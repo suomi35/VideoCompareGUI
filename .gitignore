@@ -1,0 +1,53 @@
+# ==========================================
+# Xcode & Swift Project Gitignore Template
+# ==========================================
+
+## Build Artifacts & Caches
+build/
+DerivedData/
+*.hmap
+
+## User-Specific Settings (Never commit personal UI states or local layouts)
+xcuserdata/
+
+# EXCEPTIONS: Ensure your shared schemes and shared workspace data are explicitly tracked
+!xcuserdata/xcshareddata/
+!**/xcshareddata/WorkspaceSettings.xcsettings
+!**/xcschemes/*.xcscheme
+
+## Crash Reports & App Bundles
+*.ipa
+*.dSYM/
+*.dSYM.zip
+*.xcarchive
+
+## Xcode Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+## Swift Package Manager (SPM)
+.build/
+# OPTIONAL: Uncomment the following line if you do not want to check in Swift Package Manager metadata 
+# .swiftpm/
+
+## Dependency Managers (Optional - see recommendations below)
+# CocoaPods
+# Pods/
+
+# Carthage
+# Carthage/Build/
+
+## Fastlane Output
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+## macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.fseventsd
+.Trashes
