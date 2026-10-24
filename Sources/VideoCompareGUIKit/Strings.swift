@@ -29,7 +29,6 @@ public final class Strings {
         public static let descriptionSuffix: LocalizedStringKey = "about.descriptionSuffix"
         public static let licenseText: LocalizedStringKey = "about.licenseText"
         public static let licenseTitle: LocalizedStringKey = "about.licenseTitle"
-        public static let okButton: LocalizedStringKey = "about.okButton"
         public static let videoCompareTool: LocalizedStringKey = "about.videoCompareTool"
     }
 
@@ -112,6 +111,8 @@ public final class Strings {
         public static let helpHwaccelBoth: LocalizedStringKey = "help.hwaccel.both"
         public static let helpHwaccelLeft: LocalizedStringKey = "help.hwaccel.left"
         public static let helpHwaccelRight: LocalizedStringKey = "help.hwaccel.right"
+        public static let helpRescan: LocalizedStringKey = "help.rescan"
+        public static let helpSwapLeftRight: LocalizedStringKey = "help.swap.left.right"
         public static let helpToggleBilinearTexture: LocalizedStringKey = "help.toggle.bilinearTexture"
         public static let helpToggleFastAlignment: LocalizedStringKey = "help.toggle.fastAlignment"
         public static let helpToggleFullscreen: LocalizedStringKey = "help.toggle.fullscreen"
@@ -240,6 +241,8 @@ public final class Strings {
         public static let launch: LocalizedStringKey = "menu.launch"
         public static let launchButton: LocalizedStringKey = "button.launch"
         public static let launchComparison: LocalizedStringKey = "button.launchComparison"
+        public static let ok: LocalizedStringKey = "button.ok"
+        public static let rescan: LocalizedStringKey = "button.rescan"
         public static let stop: LocalizedStringKey = "button.stop"
         public static let swap: LocalizedStringKey = "menu.swap"
         public static let swapSides: LocalizedStringKey = "button.swapSides"
@@ -260,7 +263,9 @@ public final class Strings {
     // MARK: - Tab items
     public struct Tab {
         public static let colorTone: LocalizedStringKey = "tab.colorTone"
+        public static let display: LocalizedStringKey = "tab.display"
         public static let filters: LocalizedStringKey = "tab.filters"
+        public static let general: LocalizedStringKey = "tab.general"
         public static let scopes: LocalizedStringKey = "tab.scopes"
     }
 
@@ -285,5 +290,11 @@ public final class Strings {
         public static let selectTwoVideosTitle: LocalizedStringKey = "alert.selectTwoVideos.title"
         public static let videoCompareNotFoundMessage: LocalizedStringKey = "alert.videoCompareNotFound.message"
         public static let videoCompareNotFoundTitle: LocalizedStringKey = "alert.videoCompareNotFound.title"
+    }
+    
+    // MARK: - Panel items
+    public struct Panel {
+        public static let chooseLeftVideo: LocalizedStringKey = "panel.chooseLeftVideo"
+        public static let chooseRightVideo: LocalizedStringKey = "panel.chooseRightVideo"
     }
 }

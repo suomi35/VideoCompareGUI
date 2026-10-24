@@ -12,23 +12,23 @@ struct GeneralTabView: View {
             Section(Strings.Section.playback) {
                 FieldRow(label: Strings.Field.autoLoopMode, help: Strings.Help.autoLoopMode) {
                     Picker("", selection: $model.settings.autoLoopMode) {
-                        Text("Off").tag("off")
-                        Text("Forward").tag("on")
-                        Text("Ping-pong").tag("pp")
+                        Text(Strings.Picker.off).tag("off")
+                        Text(Strings.Picker.forward).tag("on")
+                        Text(Strings.Picker.pingPong).tag("pp")
                     }
                     .labelsHidden()
                     .frame(width: 180)
                 }
                 FieldRow(label: Strings.Field.frameBufferSize, help: Strings.Help.frameBufferSize) {
-                    TextField("default: 50", text: $model.settings.frameBufferSize)
+                    TextField(Strings.Placeholder.frameBufferSize, text: $model.settings.frameBufferSize)
                         .textFieldStyle(.roundedBorder)
                 }
                 FieldRow(label: Strings.Field.timeShift, help: Strings.Help.timeShift) {
-                    TextField("e.g. 0.150, x1.04+0.1", text: $model.settings.timeShift)
+                    TextField(Strings.Placeholder.timeShift, text: $model.settings.timeShift)
                         .textFieldStyle(.roundedBorder)
                 }
                 FieldRow(label: Strings.Field.wheelSensitivity, help: Strings.Help.wheelSensitivity) {
-                    TextField("default: 1", text: $model.settings.wheelSensitivity)
+                    TextField(Strings.Placeholder.wheelSensitivity, text: $model.settings.wheelSensitivity)
                         .textFieldStyle(.roundedBorder)
                 }
                 Toggle(Strings.Toggle.subtractionMode, isOn: $model.settings.subtractionMode).help(Strings.Help.helpToggleSubtractionMode)
@@ -38,11 +38,11 @@ struct GeneralTabView: View {
                 Toggle(Strings.Toggle.tenBit, isOn: $model.settings.tenBitPerComponent).help(Strings.Help.helpToggleTenBit)
                 Toggle(Strings.Toggle.fullscreen, isOn: $model.settings.fullscreen).help(Strings.Help.helpToggleFullscreen)
                 FieldRow(label: Strings.Field.displayNumber, help: Strings.Help.displayNumber) {
-                    TextField("default: 0", text: $model.settings.displayNumber)
+                    TextField(Strings.Placeholder.displayNumber, text: $model.settings.displayNumber)
                         .textFieldStyle(.roundedBorder)
                 }
                 FieldRow(label: Strings.Field.uiScale, help: Strings.Help.uiScale) {
-                    TextField("default: 1.0", text: $model.settings.uiScale)
+                    TextField(Strings.Placeholder.uiScale, text: $model.settings.uiScale)
                         .textFieldStyle(.roundedBorder)
                 }
                 FieldRow(label: Strings.Field.font, help: Strings.Help.font) {

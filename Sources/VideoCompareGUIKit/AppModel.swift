@@ -85,7 +85,7 @@ public final class AppModel: ObservableObject {
 
     public func pickFile(for side: Side) {
         let panel = NSOpenPanel()
-        panel.title = side == .left ? "Choose Left Video" : "Choose Right Video"
+        panel.title = side == .left ? String(localized: "panel.chooseLeftVideo") : String(localized: "panel.chooseRightVideo")
         panel.allowsMultipleSelection = false
         panel.canChooseDirectories = false
         panel.canChooseFiles = true

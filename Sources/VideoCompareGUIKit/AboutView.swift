@@ -78,7 +78,7 @@ public struct AboutView: View {
 
             Spacer(minLength: 8)
 
-            Button(Strings.About.okButton) { dismiss() }
+            Button(Strings.Button.ok) { dismiss() }
                 .keyboardShortcut(.defaultAction)
                 .buttonStyle(.borderedProminent)
         }

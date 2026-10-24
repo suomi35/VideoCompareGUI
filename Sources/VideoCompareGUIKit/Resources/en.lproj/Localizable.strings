@@ -7,8 +7,8 @@
    ============================================================================ */
 
 /* --- Application --- */
-"app.name" = "Video Compare";
-"app.window.title" = "Video Compare";
+"app.name" = "Video Compare GUI";
+"app.window.title" = "Video Compare GUI";
 
 /* --- Menu items --- */
 "menu.about" = "About %@…";
@@ -127,7 +127,7 @@
 "picker.oneByOne" = "1:1";
 "picker.on" = "On";
 "picker.original" = "Original";
-"picker.pingPong" = "Ping pong";
+"picker.pingPong" = "Ping-pong";
 "picker.relative" = "Relative";
 "picker.right" = "Right";
 "picker.rightVideo" = "Right Video";
@@ -169,7 +169,9 @@
 
 /* --- Tab items --- */
 "tab.colorTone" = "Color & Tone";
+"tab.display" = "Display";
 "tab.filters" = "Filters & Decoders";
+"tab.general" = "General";
 "tab.scopes" = "Scopes";
 
 /* --- Alerts --- */
@@ -203,6 +205,8 @@
 "help.hwaccel.both" = "FFmpeg video hardware acceleration for both sides, specified as [type][:device?[:options?]] (e.g. 'videotoolbox' or 'vaapi:/dev/dri/renderD128')";
 "help.hwaccel.left" = "Left FFmpeg video hardware acceleration, specified as [type][:device?[:options?]] (e.g. 'cuda', 'cuda:1' or 'vulkan')";
 "help.hwaccel.right" = "Right FFmpeg video hardware acceleration, specified as [type][:device?[:options?]]";
+"help.rescan" = "Re-scan for the video-compare executable";
+"help.swap.left.right" + "Swap left and right (⇧⌘X)";
 "help.toggle.bilinearTexture" = "Toggle bilinear video texture interpolation, replacing nearest-neighbor filtering.";
 "help.toggle.fastAlignment" = "Toggle fast bilinear scaling for aligning input source resolutions, replacing high-quality bicubic and chroma-accurate interpolation.";
 "help.toggle.histogramWindow" = "Open always-on-top histogram scopes window.";
@@ -218,6 +222,8 @@
 "button.chooseLeft" = "Choose Left Video…";
 "button.chooseRight" = "Choose Right Video…";
 "button.clearFiles" = "Clear Files";
+"button.ok" = "OK";
+"button.rescan" = "Re-scan";
 "button.swapSides" = "Swap Sides";
 
 /* --- Additional picker options --- */
@@ -254,7 +260,6 @@
 "about.descriptionSuffix" = " written in Swift/SwiftUI";
 "about.licenseText" = "GPLv2 — same terms as pixop/video-compare";
 "about.licenseTitle" = "License";
-"about.okButton" = "OK";
 "about.videoCompareTool" = "Video-Compare Tool";
 
 /* --- Placeholder hints --- */
@@ -281,3 +286,7 @@
 "placeholder.wheelSensitivity" = "default: 1";
 "placeholder.windowHeight" = "720";
 "placeholder.windowWidth" = "1280";
+
+/* --- Panel File Picker --- */
+"panel.chooseLeftVideo" = "Choose Left Video";
+"panel.chooseRightVideo" = "Choose Right Video";

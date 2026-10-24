@@ -96,7 +96,7 @@ public struct ContentView: View {
                 } label: {
                     Image(systemName: "arrow.left.arrow.right")
                 }
-                .help("Swap left and right (⇧⌘X)")
+                .help(Strings.Help.helpSwapLeftRight)
                 .disabled(model.leftFile == nil && model.rightFile == nil)
                 FileWellView(side: .right)
             }
@@ -114,7 +114,7 @@ public struct ContentView: View {
             Alert(
                 title: Text(alert.title),
                 message: Text(alert.message),
-                dismissButton: .default(Text("OK"))
+                dismissButton: .default(Text(Strings.Button.ok))
             )
         }
     }
@@ -134,9 +134,9 @@ public struct ContentView: View {
             Button {
                 model.refreshExecutable()
             } label: {
-                Label("Re-scan", systemImage: "arrow.clockwise")
+                Label(Strings.Button.rescan, systemImage: "arrow.clockwise")
             }
-            .help("Re-scan for the video-compare executable")
+            .help(Strings.Help.helpRescan)
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
@@ -146,8 +146,8 @@ public struct ContentView: View {
 
     private var optionsTabs: some View {
         TabView {
-            GeneralTabView().tabItem { Label("General", systemImage: "slider.horizontal.3") }
-            DisplayTabView().tabItem { Label("Display", systemImage: "macbook") }
+            GeneralTabView().tabItem { Label(Strings.Tab.general, systemImage: "slider.horizontal.3") }
+            DisplayTabView().tabItem { Label(Strings.Tab.display, systemImage: "macbook") }
             ColorToneTabView().tabItem { Label(Strings.Tab.colorTone, systemImage: "paintpalette") }
             FiltersTabView().tabItem { Label(Strings.Tab.filters, systemImage: "line.3.horizontal.decrease.circle") }
             ScopesTabView().tabItem { Label(Strings.Tab.scopes, systemImage: "waveform") }
