@@ -43,16 +43,26 @@ struct ScopesTabView: View {
                 Toggle(Strings.Field.scopeSize, isOn: $model.settings.scopeSizeEnabled).help(Strings.Help.helpToggleScopeSize)
                     .toggleStyle(.checkbox)
                 if model.settings.scopeSizeEnabled {
-                    FieldRow(label: Strings.Field.widthHeightScope, help: Strings.Help.scopeSize) {
-                        TextField("1024", text: $model.settings.scopeWidth)
-                            .frame(width: 90)
-                            .textFieldStyle(.roundedBorder)
-                        Text("×")
-                            .foregroundStyle(.secondary)
-                        TextField("256", text: $model.settings.scopeHeight)
-                            .frame(width: 90)
-                            .textFieldStyle(.roundedBorder)
+                    VStack(alignment: .trailing) {
+                        HStack {
+                            Text("Width")
+                            TextField("", text: $model.settings.scopeWidth)
+                                .textFieldStyle(.roundedBorder)
+                                .labelsHidden()
+                                .multilineTextAlignment(.trailing)
+                                .frame(width: 90)
+                        }
+                        Spacer(minLength: 12)
+                        HStack {
+                            Text("Height")
+                            TextField("", text: $model.settings.scopeHeight)
+                                .textFieldStyle(.roundedBorder)
+                                .labelsHidden()
+                                .multilineTextAlignment(.trailing)
+                                .frame(width: 90)
+                        }
                     }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 FieldRow(label: Strings.Field.scopeColorMode, help: Strings.Help.scopeColorMode) {
                     TextField("e.g. rgb,luma", text: $model.settings.scopeColorMode)

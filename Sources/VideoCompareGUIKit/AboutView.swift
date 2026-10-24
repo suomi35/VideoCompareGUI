@@ -10,9 +10,9 @@ public struct AboutView: View {
 
     public init() {
         let info = Bundle.main.infoDictionary ?? [:]
-        self.appName = info["CFBundleName"] as? String ?? "Video Compare"
-        self.version = info["CFBundleShortVersionString"] as? String ?? "1.0.0"
-        self.build = info["CFBundleVersion"] as? String ?? "1"
+        self.appName = info["CFBundleName"] as! String
+        self.version = info["CFBundleShortVersionString"] as! String
+        self.build = info["CFBundleVersion"] as! String
     }
 
     public var body: some View {
@@ -40,46 +40,50 @@ public struct AboutView: View {
 
             Divider()
 
-            Text("""
-            A native macOS GUI for the Video-Compare Tool.
+            HStack(alignment: .top, spacing: 4) {
+                Text(Strings.About.descriptionPrefix)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
 
-            Compares two video files side-by-side (or stacked) using
-            pixop/video-compare.
-            """)
-            .font(.body)
+                Link(Strings.About.videoCompareTool, destination: URL(string: "https://github.com/pixop/video-compare")!)
+                    .font(.subheadline)
+                    .underline()
+
+                Text(Strings.About.descriptionSuffix)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
             .multilineTextAlignment(.center)
-            .foregroundStyle(.secondary)
-            .fixedSize(horizontal: false, vertical: true)
 
             Spacer(minLength: 8)
 
             VStack(alignment: .leading, spacing: 4) {
-                Text("License")
+                Text(Strings.About.licenseTitle)
                     .font(.caption2.weight(.bold))
                     .foregroundStyle(.secondary)
-                Text("GPLv2 — same terms as pixop/video-compare")
+                Text(Strings.About.licenseText)
                     .font(.caption)
                     .foregroundStyle(.secondary)
 
                 Divider()
                     .frame(maxWidth: .infinity)
 
-                Text("Credits")
+                Text(Strings.About.creditsTitle)
                     .font(.caption2.weight(.bold))
                     .foregroundStyle(.secondary)
-                Text("GUI modeled after TetzkatLipHoka/VideoCompareGUI (Windows).")
+                Text(Strings.About.creditsText)
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
 
             Spacer(minLength: 8)
 
-            Button("OK") { dismiss() }
+            Button(Strings.About.okButton) { dismiss() }
                 .keyboardShortcut(.defaultAction)
                 .buttonStyle(.borderedProminent)
         }
         .padding(24)
-        .frame(width: 460, height: 380)
+        .frame(width: 460, height: 400)
     }
 }
 

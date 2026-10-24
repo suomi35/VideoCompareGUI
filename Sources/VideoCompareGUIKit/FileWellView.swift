@@ -37,7 +37,7 @@ struct FileWellView: View {
                             .foregroundStyle(.secondary)
                     }
                     .buttonStyle(.plain)
-                    .help("Clear")
+                    .help(Strings.Button.clearFiles)
                 }
             }
             ZStack {

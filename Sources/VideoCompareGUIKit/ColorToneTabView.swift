@@ -14,19 +14,19 @@ struct ColorToneTabView: View {
             }
             Section(Strings.Section.colorimetry) {
                 FieldRow(label: Strings.Field.colorSpace, help: Strings.Help.colorSpace) {
-                    TextField("e.g. bt709, bt2020nc:", text: $model.settings.colorSpace)
+                    TextField(Strings.Placeholder.colorSpace, text: $model.settings.colorSpace)
                         .textFieldStyle(.roundedBorder)
                 }
                 FieldRow(label: Strings.Field.colorRange, help: Strings.Help.colorRange) {
-                    TextField("e.g. tv, pc:tv", text: $model.settings.colorRange)
+                    TextField(Strings.Placeholder.colorRange, text: $model.settings.colorRange)
                         .textFieldStyle(.roundedBorder)
                 }
                 FieldRow(label: Strings.Field.colorPrimaries, help: Strings.Help.colorPrimaries) {
-                    TextField("e.g. bt709, bt2020:bt709", text: $model.settings.colorPrimaries)
+                    TextField(Strings.Placeholder.colorPrimaries, text: $model.settings.colorPrimaries)
                         .textFieldStyle(.roundedBorder)
                 }
                 FieldRow(label: Strings.Field.colorTRC, help: Strings.Help.colorTRC) {
-                    TextField("e.g. bt709, smpte2084:", text: $model.settings.colorTRC)
+                    TextField(Strings.Placeholder.colorTRC, text: $model.settings.colorTRC)
                         .textFieldStyle(.roundedBorder)
                 }
             }
@@ -42,15 +42,15 @@ struct ColorToneTabView: View {
                     .frame(width: 180)
                 }
                 FieldRow(label: Strings.Field.leftPeakNits, help: Strings.Help.leftPeakNits) {
-                    TextField("e.g. 1000", text: $model.settings.leftPeakNits)
+                    TextField(Strings.Placeholder.peakNits, text: $model.settings.leftPeakNits)
                         .textFieldStyle(.roundedBorder)
                 }
                 FieldRow(label: Strings.Field.rightPeakNits, help: Strings.Help.rightPeakNits) {
-                    TextField("e.g. 1000", text: $model.settings.rightPeakNits)
+                    TextField(Strings.Placeholder.peakNits, text: $model.settings.rightPeakNits)
                         .textFieldStyle(.roundedBorder)
                 }
                 FieldRow(label: Strings.Field.boostTone, help: Strings.Help.boostTone) {
-                    TextField("e.g. 0.6, 2:1.5", text: $model.settings.boostTone)
+                    TextField(Strings.Placeholder.boostTone, text: $model.settings.boostTone)
                         .textFieldStyle(.roundedBorder)
                 }
             }
@@ -72,7 +72,7 @@ struct ColorToneTabView_Previews: PreviewProvider {
 /// --filter / --decoder / --demuxer / --hwaccel argument family.
 struct SideTripleField: View {
     let title: LocalizedStringKey
-    let placeholder: String
+    let placeholder: LocalizedStringKey
     let helpBoth: LocalizedStringKey
     let helpLeft: LocalizedStringKey
     let helpRight: LocalizedStringKey

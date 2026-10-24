@@ -14,123 +14,129 @@
 "menu.about" = "About %@…";
 "menu.choose.left" = "Choose Left Video…";
 "menu.choose.right" = "Choose Right Video…";
-"menu.swap" = "Swap Sides";
 "menu.clear" = "Clear Files";
 "menu.launch" = "Launch Comparison";
+"menu.swap" = "Swap Sides";
 
 /* --- Section titles --- */
-"section.playback" = "Playback";
-"section.windowQuality" = "Window & Quality";
+"section.aspect" = "Aspect";
+"section.colorimetry" = "Colorimetry";
 "section.layout" = "Layout";
 "section.output" = "Output";
-"section.colorimetry" = "Colorimetry";
-"section.toneMapping" = "Tone Mapping";
+"section.playback" = "Playback";
 "section.scaling" = "Scaling";
 "section.scopeWindows" = "Scope Windows";
+"section.toneMapping" = "Tone Mapping";
 "section.vmafConversion" = "VMAF Conversion";
-"section.aspect" = "Aspect";
+"section.windowQuality" = "Window & Quality";
 "text.colorValues" = "Color values accept either a single value for both sides, or left:right (e.g. 'bt2020nc:' or 'pc:tv'). Leave empty to let video-compare decide.";
 "text.demuxer" = "Demuxer / decoder / hwaccel are FFmpeg names, e.g. hwaccel 'videotoolbox' on macOS. A 'Both sides' value takes precedence over per-side values.";
 
 /* --- Field labels --- */
-"field.autoLoopMode" = "Auto Loop";
-"field.frameBufferSize" = "Frame Buffer Size";
-"field.timeShift" = "Time Shift";
-"field.wheelSensitivity" = "Wheel Sensitivity";
-"field.displayNumber" = "Display Number";
-"field.uiScale" = "UI Scale";
-"field.font" = "Font";
-"field.mode" = "Mode";
-"field.windowSize" = "Window Size";
-"field.widthHeight" = "Width × Height";
-"field.widthHeightScope" = "Scope Width × Height";
 "field.aspectLock" = "Aspect Lock";
 "field.aspectView" = "Aspect View Mode";
-"field.colorSpace" = "Color Space";
-"field.colorRange" = "Color Range";
-"field.colorPrimaries" = "Color Primaries";
-"field.colorTRC" = "Color TRC";
-"field.toneMapMode" = "Tone Map Mode";
-"field.leftPeakNits" = "Left Peak Nits";
-"field.rightPeakNits" = "Right Peak Nits";
-"field.boostTone" = "Boost Tone";
-"field.filters" = "Filters";
-"field.demuxer" = "Demuxer";
-"field.decoder" = "Decoder";
-"field.hardwareAcceleration" = "Hardware Acceleration";
-"field.libvmafOptions" = "libvmaf Options";
-"field.conversionSize" = "Conversion Size";
-"field.conversionFit" = "Conversion Fit";
-"field.fastAlignment" = "Fast alignment";
+"field.autoLoopMode" = "Auto Loop";
 "field.bilinearTexture" = "Bilinear Texture";
-"field.noAutoFilters" = "No Auto Filters";
+"field.boostTone" = "Boost Tone";
+"field.colorPrimaries" = "Color Primaries";
+"field.colorRange" = "Color Range";
+"field.colorSpace" = "Color Space";
+"field.colorTRC" = "Color TRC";
+"field.conversionFit" = "Conversion Fit";
+"field.conversionSize" = "Conversion Size";
+"field.decoder" = "Decoder";
+"field.demuxer" = "Demuxer";
+"field.displayNumber" = "Display Number";
+"field.fastAlignment" = "Fast alignment";
+"field.filterOptions" = "Filter Options";
+"field.filters" = "Filters";
+"field.font" = "Font";
+"field.frameBufferSize" = "Frame Buffer Size";
+"field.hardwareAcceleration" = "Hardware Acceleration";
 "field.histogramWindow" = "Histogram Window";
-"field.vectorscopeWindow" = "Vectorscope Window";
-"field.waveformWindow" = "Waveform Window";
-"field.scopeSize" = "Scope Size";
+"field.leftPeakNits" = "Left Peak Nits";
+"field.libvmafOptions" = "libvmaf Options";
+"field.mode" = "Mode";
+"field.noAutoFilters" = "No Auto Filters";
+"field.rightPeakNits" = "Right Peak Nits";
 "field.scopeColorMode" = "Scope Color Mode";
 "field.scopeNotop" = "Do not keep scopes always on top";
+"field.scopeSize" = "Scope Size";
+"field.timeShift" = "Time Shift";
+"field.toneMapMode" = "Tone Map Mode";
+"field.uiScale" = "UI Scale";
+"field.vectorscopeWindow" = "Vectorscope Window";
+"field.waveformWindow" = "Waveform Window";
+"field.wheelSensitivity" = "Wheel Sensitivity";
+"field.widthHeight" = "Width × Height";
+"field.widthHeightScope" = "Scope Width × Height";
+"field.windowSize" = "Window Size";
 
 /* --- Help text --- */
-"help.autoLoopMode" = "Auto-repeat the comparison.";
-"help.frameBufferSize" = "Frame buffer size, in frames.";
-"help.timeShift" = "Time shift between the two inputs, in seconds.";
-"help.wheelSensitivity" = "Wheel sensitivity.";
-"help.displayNumber" = "Display used for fullscreen mode.";
-"help.uiScale" = "User-interface scale factor.";
-"help.font" = "User-interface font.";
-"help.mode" = "Comparison layout mode.";
-"help.windowSizeOverride" = "Override window size.";
-"help.widthHeight" = "Leave one side empty to keep the aspect ratio.";
 "help.aspectLock" = "Lock the aspect ratio to content or window.";
 "help.aspectView" = "Choose how the video is fit into the view.";
-"help.colorSpace" = "Working color space.";
-"help.colorRange" = "Color range (limited or full).";
-"help.colorPrimaries" = "Color primaries signalled in the stream.";
-"help.colorTRC" = "Transfer characteristics.";
-"help.toneMapMode" = "Tone mapping mode.";
-"help.leftPeakNits" = "Left peak luminance, in nits.";
-"help.rightPeakNits" = "Right peak luminance, in nits.";
+"help.autoLoopMode" = "Auto-repeat the comparison.";
+"help.bilinearTexture" = "Toggle bilinear video texture interpolation.";
 "help.boostTone" = "Tone-mapping boost ratio.";
-"help.filters" = "Specify a comma-separated list of FFmpeg filters.";
-"help.demuxer" = "Left FFmpeg video demuxer name.";
-"help.decoder" = "FFmpeg video decoder name.";
-"help.hardwareAcceleration" = "FFmpeg video hardware acceleration.";
-"help.libvmafOptions" = "libvmaf options string.";
-"help.conversionSize" = "Output resolution used for VMAF.";
+"help.colorPrimaries" = "Color primaries signalled in the stream.";
+"help.colorRange" = "Color range (limited or full).";
+"help.colorSpace" = "Working color space.";
+"help.colorTRC" = "Transfer characteristics.";
 "help.conversionFit" = "How the conversion fits the frame.";
+"help.conversionSize" = "Output resolution used for VMAF.";
+"help.decoder" = "FFmpeg video decoder name.";
+"help.demuxer" = "Left FFmpeg video demuxer name.";
+"help.displayNumber" = "Display used for fullscreen mode.";
+"help.fastAlignment" = "Toggle fast bilinear scaling for aligning input source resolutions.";
+"help.filters" = "Specify a comma-separated list of FFmpeg filters.";
+"help.font" = "User-interface font.";
+"help.frameBufferSize" = "Frame buffer size, in frames.";
+"help.hardwareAcceleration" = "FFmpeg video hardware acceleration.";
 "help.histogramOptions" = "Histogram display options string.";
-"help.vectorscopeOptions" = "Vectorscope options string.";
-"help.waveformOptions" = "Waveform options string.";
-"help.scopeSize" = "Scope resolution (W×H).";
+"help.leftPeakNits" = "Left peak luminance, in nits.";
+"help.libvmafOptions" = "libvmaf options string.";
+"help.mode" = "Comparison layout mode.";
+"help.noAutoFilters" = "Disable automatically injecting filters for deinterlacing, DAR correction, frame rate harmonization, rotation and colorimetry.";
+"help.rightPeakNits" = "Right peak luminance, in nits.";
 "help.scopeColorMode" = "Scope color mode.";
 "help.scopeNotop" = "Do not keep scopes always on top.";
-"help.fastAlignment" = "Toggle fast bilinear scaling for aligning input source resolutions.";
-"help.bilinearTexture" = "Toggle bilinear video texture interpolation.";
-"help.noAutoFilters" = "Disable automatically injecting filters for deinterlacing, DAR correction, frame rate harmonization, rotation and colorimetry.";
+"help.scopeSize" = "Scope resolution (W×H).";
+"help.timeShift" = "Time shift between the two inputs, in seconds.";
+"help.toneMapMode" = "Tone mapping mode.";
+"help.uiScale" = "User-interface scale factor.";
+"help.vectorscopeOptions" = "Vectorscope options string.";
 "help.verbose" = "Enable verbose output, including information such as library versions and rendering details.";
+"help.waveformOptions" = "Waveform options string.";
+"help.wheelSensitivity" = "Wheel sensitivity.";
+"help.widthHeight" = "Leave one side empty to keep the aspect ratio.";
+"help.windowSizeOverride" = "Override window size.";
 
 /* --- Picker options --- */
-"picker.left" = "Left";
-"picker.right" = "Right";
-"picker.topVideo" = "Top Video";
-"picker.bottomVideo" = "Bottom Video";
+"picker.auto" = "Auto";
 "picker.bothSides" = "Both Sides";
+"picker.bottomVideo" = "Bottom Video";
+"picker.contentRatio" = "Content ratio";
+"picker.dynamic" = "Dynamic";
+"picker.fourByThree" = "4:3";
+"picker.forward" = "Forward";
 "picker.histogram" = "Histogram";
+"picker.left" = "Left";
+"picker.leftVideo" = "Left Video";
+"picker.native" = "Native";
+"picker.off" = "Off";
+"picker.oneByOne" = "1:1";
+"picker.on" = "On";
+"picker.original" = "Original";
+"picker.pingPong" = "Ping pong";
+"picker.relative" = "Relative";
+"picker.right" = "Right";
+"picker.rightVideo" = "Right Video";
+"picker.sixteenByNine" = "16:9";
+"picker.stretch" = "Stretch";
+"picker.topVideo" = "Top Video";
 "picker.vectorscope" = "Vectorscope";
 "picker.waveform" = "Waveform";
-"picker.off" = "Off";
-"picker.on" = "On";
-"picker.relative" = "Relative";
-"picker.auto" = "Auto";
 "picker.windowRatio" = "Window ratio";
-"picker.contentRatio" = "Content ratio";
-"picker.stretch" = "Stretch";
-"picker.original" = "Original";
-"picker.dynamic" = "Dynamic";
-"picker.sixteenByNine" = "16:9";
-"picker.fourByThree" = "4:3";
-"picker.oneByOne" = "1:1";
 
 /* --- Placeholders --- */
 "placeholder.clickToChoose" = "Click to choose";
@@ -138,28 +144,28 @@
 "placeholder.selectVideos" = "Select two videos to build the command…";
 
 /* --- Toggle labels --- */
-"toggle.subtractionMode" = "Subtraction Mode";
-"toggle.highDPI" = "High DPI";
-"toggle.tenBit" = "10-bit";
-"toggle.fullscreen" = "Fullscreen";
-"toggle.verbose" = "Verbose";
+"toggle.bilinearTexture" = "Bilinear Texture";
 "toggle.differentPerSide" = "Different per side";
 "toggle.fastAlignment" = "Fast alignment";
-"toggle.bilinearTexture" = "Bilinear Texture";
-"toggle.noAutoFilters" = "No Auto Filters";
+"toggle.fullscreen" = "Fullscreen";
+"toggle.highDPI" = "High DPI";
 "toggle.histogramWindow" = "Histogram Window";
-"toggle.vectorscopeWindow" = "Vectorscope Window";
-"toggle.waveformWindow" = "Waveform Window";
+"toggle.noAutoFilters" = "No Auto Filters";
 "toggle.scopeNotop" = "Do not keep scopes always on top";
+"toggle.subtractionMode" = "Subtraction Mode";
+"toggle.tenBit" = "10-bit";
+"toggle.vectorscopeWindow" = "Vectorscope Window";
+"toggle.verbose" = "Verbose";
+"toggle.waveformWindow" = "Waveform Window";
 
 /* --- Footer / command preview --- */
-"label.commandPreview" = "Command preview";
-"button.copyOutput" = "Copy Output";
-"label.recents" = "Recents";
 "button.clearRecents" = "Clear Recents";
-"tip.dragVideos" = "Tip: drag two video files onto the app icon to load them.";
-"button.stop" = "Stop";
+"button.copyOutput" = "Copy Output";
 "button.launch" = "Launch";
+"button.stop" = "Stop";
+"label.commandPreview" = "Command preview";
+"label.recents" = "Recents";
+"tip.dragVideos" = "Tip: drag two video files onto the app icon to load them.";
 
 /* --- Tab items --- */
 "tab.colorTone" = "Color & Tone";
@@ -167,68 +173,68 @@
 "tab.scopes" = "Scopes";
 
 /* --- Alerts --- */
-"alert.videoCompareNotFound.title" = "video-compare not found";
-"alert.videoCompareNotFound.message" = "Install it with Homebrew:\n\nbrew install video-compare\n\nThen click Re-scan.";
-"alert.selectTwoVideos.title" = "Select two videos";
-"alert.selectTwoVideos.message" = "Choose a left and a right video file first.";
-"alert.sameFile.title" = "Same file selected";
-"alert.sameFile.message" = "The left and right videos must be different files.";
-"alert.fileNotFound.title" = "File not found";
-"alert.fileNotFound.message" = "One of the selected videos no longer exists on disk.";
-"alert.launchFailed.title" = "Launch failed";
-"alert.exitCode.title" = "video-compare exited with code";
 "alert.exitCode.message.noOutput" = "No error output was captured.";
+"alert.exitCode.title" = "video-compare exited with code";
+"alert.fileNotFound.message" = "One of the selected videos no longer exists on disk.";
+"alert.fileNotFound.title" = "File not found";
+"alert.launchFailed.title" = "Launch failed";
+"alert.sameFile.message" = "The left and right videos must be different files.";
+"alert.sameFile.title" = "Same file selected";
+"alert.selectTwoVideos.message" = "Choose a left and a right video file first.";
+"alert.selectTwoVideos.title" = "Select two videos";
+"alert.videoCompareNotFound.message" = "Install it with Homebrew:\n\nbrew install video-compare\n\nThen click Re-scan.";
+"alert.videoCompareNotFound.title" = "video-compare not found";
 
 /* --- Additional field labels (inline in views) --- */
+"field.aspectSection" = "Aspect";
 "field.output" = "Output";
 "field.windowSizeFixed" = "Window Size";
-"field.aspectSection" = "Aspect";
 
 /* --- Additional help text (inline in views) --- */
-"help.filters.both" = "Apply to both sides: comma-separated FFmpeg filters (e.g. scale=1920:-2,delogo=x=10:y=10:w=100:h=70)";
-"help.filters.left" = "Apply to left video: comma-separated FFmpeg filters (e.g. format=gray,crop=iw:ih-240)";
-"help.filters.right" = "Apply to right video: comma-separated FFmpeg filters (e.g. yadif,hqdn3d,pad=iw+320:ih:160:0)";
-"help.demuxer.both" = "Left FFmpeg video demuxer name for both sides, specified as [type?][:options?] (e.g. 'rawvideo:pixel_format=rgb24,video_size=320x240,framerate=10')";
-"help.demuxer.left" = "Left FFmpeg video demuxer name, specified as [type?][:options?]";
-"help.demuxer.right" = "Right FFmpeg video demuxer name, specified as [type?][:options?]";
 "help.decoder.both" = "FFmpeg video decoder name for both sides, specified as [type?][:options?] (e.g. ':strict=unofficial', ':strict=-2' or 'vvc:strict=experimental')";
 "help.decoder.left" = "Left FFmpeg video decoder name, specified as [type?][:options?] (e.g. ':strict=-2,trust_dec_pts=1' or 'h264:trust_dec_pts=1,rewrite_duration=1')";
 "help.decoder.right" = "Right FFmpeg video decoder name, specified as [type?][:options?] (e.g. ':rewrite_duration=1')";
+"help.demuxer.both" = "Left FFmpeg video demuxer name for both sides, specified as [type?][:options?] (e.g. 'rawvideo:pixel_format=rgb24,video_size=320x240,framerate=10')";
+"help.demuxer.left" = "Left FFmpeg video demuxer name, specified as [type?][:options?]";
+"help.demuxer.right" = "Right FFmpeg video demuxer name, specified as [type?][:options?]";
+"help.filters.both" = "Apply to both sides: comma-separated FFmpeg filters (e.g. scale=1920:-2,delogo=x=10:y=10:w=100:h=70)";
+"help.filters.left" = "Apply to left video: comma-separated FFmpeg filters (e.g. format=gray,crop=iw:ih-240)";
+"help.filters.right" = "Apply to right video: comma-separated FFmpeg filters (e.g. yadif,hqdn3d,pad=iw+320:ih:160:0)";
 "help.hwaccel.both" = "FFmpeg video hardware acceleration for both sides, specified as [type][:device?[:options?]] (e.g. 'videotoolbox' or 'vaapi:/dev/dri/renderD128')";
 "help.hwaccel.left" = "Left FFmpeg video hardware acceleration, specified as [type][:device?[:options?]] (e.g. 'cuda', 'cuda:1' or 'vulkan')";
 "help.hwaccel.right" = "Right FFmpeg video hardware acceleration, specified as [type][:device?[:options?]]";
-"help.toggle.fastAlignment" = "Toggle fast bilinear scaling for aligning input source resolutions, replacing high-quality bicubic and chroma-accurate interpolation.";
 "help.toggle.bilinearTexture" = "Toggle bilinear video texture interpolation, replacing nearest-neighbor filtering.";
-"help.toggle.noAutoFilters" = "Disable the default behaviour of automatically injecting filters for deinterlacing, DAR correction, frame rate harmonization, rotation and colorimetry.";
+"help.toggle.fastAlignment" = "Toggle fast bilinear scaling for aligning input source resolutions, replacing high-quality bicubic and chroma-accurate interpolation.";
 "help.toggle.histogramWindow" = "Open always-on-top histogram scopes window.";
+"help.toggle.noAutoFilters" = "Disable the default behaviour of automatically injecting filters for deinterlacing, DAR correction, frame rate harmonization, rotation and colorimetry.";
+"help.toggle.scopeNotop" = "Do not keep scope windows always on top.";
+"help.toggle.scopeSize" = "Set initial scope window size as WxH (total width by height); scope windows are resizable; default 1024x256.";
 "help.toggle.vectorscopeWindow" = "Open always-on-top vectorscope scopes window.";
 "help.toggle.waveformWindow" = "Open always-on-top waveform scopes window.";
-"help.toggle.scopeSize" = "Set initial scope window size as WxH (total width by height); scope windows are resizable; default 1024x256.";
-"help.toggle.scopeNotop" = "Do not keep scope windows always on top.";
-"text.scopes" = "Scopes open as separate always-on-top windows next to the comparison window.";
 "text.filters" = "Demuxer / decoder / hwaccel are FFmpeg names, e.g. hwaccel 'videotoolbox' on macOS. A 'Both sides' value takes precedence over per-side values.";
+"text.scopes" = "Scopes open as separate always-on-top windows next to the comparison window.";
 
 /* --- Button labels (inline in AppEntry) --- */
 "button.chooseLeft" = "Choose Left Video…";
 "button.chooseRight" = "Choose Right Video…";
-"button.swapSides" = "Swap Sides";
 "button.clearFiles" = "Clear Files";
+"button.swapSides" = "Swap Sides";
 
 /* --- Additional picker options --- */
-"picker.split" = "Split screen";
-"picker.vstack" = "Vertical stack";
-"picker.hstack" = "Horizontal stack";
-"picker.video" = "From video dimensions";
 "picker.fixed" = "Fixed size";
 "picker.fit" = "Fit display";
-"picker.scp" = "SCP";
+"picker.hstack" = "Horizontal stack";
 "picker.sarasa" = "Sarasa";
+"picker.scp" = "SCP";
+"picker.split" = "Split screen";
+"picker.video" = "From video dimensions";
+"picker.vstack" = "Vertical stack";
 
 /* --- Additional help text (General tab toggles) --- */
-"help.toggle.subtractionMode" = "Start in subtraction (difference) view.";
-"help.toggle.highDPI" = "Allow high DPI mode for e.g. displaying UHD content on Retina displays.";
-"help.toggle.tenBit" = "Use 10 bits per color component instead of 8.";
 "help.toggle.fullscreen" = "Start in fullscreen mode (desktop fullscreen without changing display mode/refresh rate).";
+"help.toggle.highDPI" = "Allow high DPI mode for e.g. displaying UHD content on Retina displays.";
+"help.toggle.subtractionMode" = "Start in subtraction (difference) view.";
+"help.toggle.tenBit" = "Use 10 bits per color component instead of 8.";
 
 /* --- Button / menu labels (AppEntry) --- */
 "button.launchComparison" = "Launch Comparison";
@@ -238,3 +244,40 @@
 
 /* --- Additional help text --- */
 "help.copyOutput" = "Copy the captured output of the last run";
+
+/* --- About panel --- */
+"about.buildNumber" = "build";
+"about.buildVersion" = "Version";
+"about.creditsText" = "GUI modeled after TetzkatLipHoka/VideoCompareGUI (Windows).";
+"about.creditsTitle" = "Credits";
+"about.descriptionPrefix" = "A native macOS GUI for the ";
+"about.descriptionSuffix" = " written in Swift/SwiftUI";
+"about.licenseText" = "GPLv2 — same terms as pixop/video-compare";
+"about.licenseTitle" = "License";
+"about.okButton" = "OK";
+"about.videoCompareTool" = "Video-Compare Tool";
+
+/* --- Placeholder hints --- */
+"placeholder.boostTone" = "e.g. 0.6, 2:1.5";
+"placeholder.colorPrimaries" = "e.g. bt709, bt2020:bt709";
+"placeholder.colorRange" = "e.g. tv, pc:tv";
+"placeholder.colorSpace" = "e.g. bt709, bt2020nc:";
+"placeholder.colorTRC" = "e.g. bt709, smpte2084:";
+"placeholder.conversionSize" = "max or e.g. 1920x1440";
+"placeholder.decoder" = "e.g. h264:trust_dec_pts=1";
+"placeholder.demuxer" = "e.g. rawvideo:pixel_format=rgb24,video_size=320x240";
+"placeholder.displayNumber" = "default: 0";
+"placeholder.filters" = "e.g. scale=1920:-2,yadif";
+"placeholder.frameBufferSize" = "default: 50";
+"placeholder.histogramOptions" = "e.g. display_mode=parade:level_height=256";
+"placeholder.hwaccel" = "e.g. videotoolbox";
+"placeholder.libvmaf" = "e.g. model=version=vmaf_v0.6.1";
+"placeholder.peakNits" = "e.g. 1000";
+"placeholder.scopeColorMode" = "e.g. rgb,luma";
+"placeholder.timeShift" = "e.g. 0.150, x1.04+0.1";
+"placeholder.uiScale" = "default: 1.0";
+"placeholder.vectorscopeOptions" = "e.g. mode=color4:graticule=green";
+"placeholder.waveformOptions" = "e.g. graticule=orange:display=stack";
+"placeholder.wheelSensitivity" = "default: 1";
+"placeholder.windowHeight" = "720";
+"placeholder.windowWidth" = "1280";

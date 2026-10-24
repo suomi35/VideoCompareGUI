@@ -14,7 +14,7 @@ struct FiltersTabView: View {
             }
             SideTripleField(
                 title: Strings.Field.filters,
-                placeholder: "e.g. scale=1920:-2,yadif",
+                placeholder: Strings.Placeholder.filters,
                 helpBoth: Strings.Help.helpFiltersBoth,
                 helpLeft: Strings.Help.helpFiltersLeft,
                 helpRight: Strings.Help.helpFiltersRight,
@@ -24,7 +24,7 @@ struct FiltersTabView: View {
             )
             SideTripleField(
                 title: Strings.Field.demuxer,
-                placeholder: "e.g. rawvideo:pixel_format=rgb24,video_size=320x240",
+                placeholder: Strings.Placeholder.demuxer,
                 helpBoth: Strings.Help.helpDemuxerBoth,
                 helpLeft: Strings.Help.helpDemuxerLeft,
                 helpRight: Strings.Help.helpDemuxerRight,
@@ -34,7 +34,7 @@ struct FiltersTabView: View {
             )
             SideTripleField(
                 title: Strings.Field.decoder,
-                placeholder: "e.g. h264:trust_dec_pts=1",
+                placeholder: Strings.Placeholder.decoder,
                 helpBoth: Strings.Help.helpDecoderBoth,
                 helpLeft: Strings.Help.helpDecoderLeft,
                 helpRight: Strings.Help.helpDecoderRight,
@@ -44,7 +44,7 @@ struct FiltersTabView: View {
             )
             SideTripleField(
                 title: Strings.Field.hardwareAcceleration,
-                placeholder: "e.g. videotoolbox",
+                placeholder: Strings.Placeholder.hwaccel,
                 helpBoth: Strings.Help.helpHwaccelBoth,
                 helpLeft: Strings.Help.helpHwaccelLeft,
                 helpRight: Strings.Help.helpHwaccelRight,
@@ -54,17 +54,17 @@ struct FiltersTabView: View {
             )
             Section(Strings.Section.vmafConversion) {
                 FieldRow(label: Strings.Field.libvmafOptions, help: Strings.Help.libvmafOptions) {
-                    TextField("e.g. model=version=vmaf_v0.6.1", text: $model.settings.libvmafOptions)
+                    TextField(Strings.Placeholder.libvmaf, text: $model.settings.libvmafOptions)
                         .textFieldStyle(.roundedBorder)
                 }
                 FieldRow(label: Strings.Field.conversionSize, help: Strings.Help.conversionSize) {
-                    TextField("max or e.g. 1920x1440", text: $model.settings.conversionSize)
+                    TextField(Strings.Placeholder.conversionSize, text: $model.settings.conversionSize)
                         .textFieldStyle(.roundedBorder)
                 }
                 FieldRow(label: Strings.Field.conversionFit, help: Strings.Help.conversionFit) {
                     Picker("", selection: $model.settings.conversionFit) {
-                        Text("Stretch").tag("stretch")
-                        Text("Native").tag("native")
+                        Text(Strings.Picker.stretch).tag("stretch")
+                        Text(Strings.Picker.native).tag("native")
                     }
                     .labelsHidden()
                     .frame(width: 180)
