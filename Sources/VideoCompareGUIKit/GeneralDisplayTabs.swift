@@ -91,20 +91,26 @@ struct DisplayTabView: View {
                     .frame(width: 180)
                 }
                 if model.settings.windowSizeMode == "fixed" {
-                    FieldRow(label: Strings.Field.widthHeight, help: Strings.Help.widthHeight) {
-                        Text(Strings.Help.widthHeight)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                            .lineLimit(1)
-                        TextField("1280", text: $model.settings.windowWidth)
-                            .frame(width: 90)
-                            .textFieldStyle(.roundedBorder)
-                        Text("×")
-                            .foregroundStyle(.secondary)
-                        TextField("720", text: $model.settings.windowHeight)
-                            .frame(width: 90)
-                            .textFieldStyle(.roundedBorder)
+                    VStack(alignment: .trailing) {
+                        HStack {
+                            Text(Strings.Field.width)
+                            TextField("", text: $model.settings.windowWidth)
+                                .textFieldStyle(.roundedBorder)
+                                .labelsHidden()
+                                .multilineTextAlignment(.trailing)
+                                .frame(width: 90)
+                        }
+                        Spacer(minLength: 12)
+                        HStack {
+                            Text(Strings.Field.height)
+                            TextField("", text: $model.settings.windowHeight)
+                                .textFieldStyle(.roundedBorder)
+                                .labelsHidden()
+                                .multilineTextAlignment(.trailing)
+                                .frame(width: 90)
+                        }
                     }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
             }
             Section(Strings.Field.aspectSection) {

@@ -56,6 +56,7 @@ public final class Strings {
         public static let font: LocalizedStringKey = "field.font"
         public static let frameBufferSize: LocalizedStringKey = "field.frameBufferSize"
         public static let hardwareAcceleration: LocalizedStringKey = "field.hardwareAcceleration"
+        public static let height: LocalizedStringKey = "field.height"
         public static let histogramWindow: LocalizedStringKey = "field.histogramWindow"
         public static let leftPeakNits: LocalizedStringKey = "field.leftPeakNits"
         public static let libvmafOptions: LocalizedStringKey = "field.libvmafOptions"
@@ -72,8 +73,7 @@ public final class Strings {
         public static let vectorscopeWindow: LocalizedStringKey = "field.vectorscopeWindow"
         public static let waveformWindow: LocalizedStringKey = "field.waveformWindow"
         public static let wheelSensitivity: LocalizedStringKey = "field.wheelSensitivity"
-        public static let widthHeight: LocalizedStringKey = "field.widthHeight"
-        public static let widthHeightScope: LocalizedStringKey = "field.widthHeightScope"
+        public static let width: LocalizedStringKey = "field.width"
         public static let windowSize: LocalizedStringKey = "field.windowSize"
         public static let windowSizeFixed: LocalizedStringKey = "field.windowSizeFixed"
     }

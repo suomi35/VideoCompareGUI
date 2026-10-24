@@ -16,7 +16,7 @@ struct ScopesTabView: View {
                 Toggle(Strings.Toggle.histogramWindow, isOn: $model.settings.histogramWindow).help(Strings.Help.helpToggleHistogramWindow)
                 if model.settings.histogramWindow {
                     FieldRow(label: Strings.Field.filterOptions, help: Strings.Help.histogramOptions) {
-                        TextField("e.g. display_mode=parade:level_height=256", text: $model.settings.histogramOptions)
+                        TextField(Strings.Placeholder.histogramOptions, text: $model.settings.histogramOptions)
                             .textFieldStyle(.roundedBorder)
                     }
                 }
@@ -25,7 +25,7 @@ struct ScopesTabView: View {
                 Toggle(Strings.Toggle.vectorscopeWindow, isOn: $model.settings.vectorscopeWindow).help(Strings.Help.helpToggleVectorscopeWindow)
                 if model.settings.vectorscopeWindow {
                     FieldRow(label: Strings.Field.filterOptions, help: Strings.Help.vectorscopeOptions) {
-                        TextField("e.g. mode=color4:graticule=green", text: $model.settings.vectorscopeOptions)
+                        TextField(Strings.Placeholder.vectorscopeOptions, text: $model.settings.vectorscopeOptions)
                             .textFieldStyle(.roundedBorder)
                     }
                 }
@@ -34,7 +34,7 @@ struct ScopesTabView: View {
                 Toggle(Strings.Toggle.waveformWindow, isOn: $model.settings.waveformWindow).help(Strings.Help.helpToggleWaveformWindow)
                 if model.settings.waveformWindow {
                     FieldRow(label: Strings.Field.filterOptions, help: Strings.Help.waveformOptions) {
-                        TextField("e.g. graticule=orange:display=stack", text: $model.settings.waveformOptions)
+                        TextField(Strings.Placeholder.waveformOptions, text: $model.settings.waveformOptions)
                             .textFieldStyle(.roundedBorder)
                     }
                 }
@@ -45,7 +45,7 @@ struct ScopesTabView: View {
                 if model.settings.scopeSizeEnabled {
                     VStack(alignment: .trailing) {
                         HStack {
-                            Text("Width")
+                            Text(Strings.Field.width)
                             TextField("", text: $model.settings.scopeWidth)
                                 .textFieldStyle(.roundedBorder)
                                 .labelsHidden()
@@ -54,7 +54,7 @@ struct ScopesTabView: View {
                         }
                         Spacer(minLength: 12)
                         HStack {
-                            Text("Height")
+                            Text(Strings.Field.height)
                             TextField("", text: $model.settings.scopeHeight)
                                 .textFieldStyle(.roundedBorder)
                                 .labelsHidden()
@@ -65,7 +65,7 @@ struct ScopesTabView: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 FieldRow(label: Strings.Field.scopeColorMode, help: Strings.Help.scopeColorMode) {
-                    TextField("e.g. rgb,luma", text: $model.settings.scopeColorMode)
+                    TextField(Strings.Placeholder.scopeColorMode, text: $model.settings.scopeColorMode)
                         .textFieldStyle(.roundedBorder)
                 }
                 Toggle(Strings.Toggle.scopeNotop, isOn: $model.settings.scopeNotop).help(Strings.Help.helpToggleScopeNotop)

@@ -53,6 +53,7 @@
 "field.font" = "Font";
 "field.frameBufferSize" = "Frame Buffer Size";
 "field.hardwareAcceleration" = "Hardware Acceleration";
+"field.height" = "Height";
 "field.histogramWindow" = "Histogram Window";
 "field.leftPeakNits" = "Left Peak Nits";
 "field.libvmafOptions" = "libvmaf Options";
@@ -68,8 +69,7 @@
 "field.vectorscopeWindow" = "Vectorscope Window";
 "field.waveformWindow" = "Waveform Window";
 "field.wheelSensitivity" = "Wheel Sensitivity";
-"field.widthHeight" = "Width × Height";
-"field.widthHeightScope" = "Scope Width × Height";
+"field.width" = "Width";
 "field.windowSize" = "Window Size";
 
 /* --- Help text --- */
@@ -221,7 +221,7 @@
 "button.swapSides" = "Swap Sides";
 
 /* --- Additional picker options --- */
-"picker.fixed" = "Fixed size";
+"picker.fixed" = "Fixed";
 "picker.fit" = "Fit display";
 "picker.hstack" = "Horizontal stack";
 "picker.sarasa" = "Sarasa";
@@ -240,7 +240,7 @@
 "button.launchComparison" = "Launch Comparison";
 
 /* --- Window titles --- */
-"window.title" = "Video Compare";
+"window.title" = "Video Compare GUI";
 
 /* --- Additional help text --- */
 "help.copyOutput" = "Copy the captured output of the last run";
