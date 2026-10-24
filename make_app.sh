@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 echo "==> Building release binary..."
 swift build -c release
 
-APP="build/Video Compare.app"
+APP="build/Video Compare GUI.app"
 echo "==> Assembling ${APP}..."
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
@@ -61,9 +61,9 @@ codesign --force --sign - "$APP"
 
 if [[ "${1:-}" == "--install" ]]; then
     echo "==> Installing to /Applications..."
-    rm -rf "/Applications/Video Compare.app"
-    cp -R "$APP" "/Applications/Video Compare.app"
-    echo "Installed. Launch with: open '/Applications/Video Compare.app'"
+    rm -rf "/Applications/Video Compare GUI.app"
+    cp -R "$APP" "/Applications/Video Compare GUI.app"
+    echo "Installed. Launch with: open '/Applications/Video Compare GUI.app'"
 else
     echo "==> Done: $APP"
     echo "    Install with: ./make_app.sh --install"
