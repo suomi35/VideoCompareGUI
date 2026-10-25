@@ -248,7 +248,7 @@ public struct ContentView: View {
                     } label: {
                         Label(Strings.Label.recents, systemImage: "clock")
                     }
-                    .frame(maxWidth: 220)
+                    .padding(.leading, 8)
                 }
                 Spacer()
                 if model.isLaunching {
@@ -257,6 +257,8 @@ public struct ContentView: View {
                     } label: {
                         Label(Strings.Button.stop, systemImage: "stop.circle")
                     }
+                    .tint(.red)
+                    .buttonStyle(.borderedProminent)
                 }
                 Button {
                     model.launch()
@@ -267,6 +269,7 @@ public struct ContentView: View {
                 .keyboardShortcut(.return, modifiers: .command)
                 .disabled(!model.canLaunch)
                 .buttonStyle(.borderedProminent)
+                .padding(.trailing, 8)
             }
         }
         .padding(12)
