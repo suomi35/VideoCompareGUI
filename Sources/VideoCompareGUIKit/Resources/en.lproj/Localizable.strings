@@ -2,7 +2,7 @@
    Localizable.strings — English (base localization)
    
    All user-facing strings for Video Compare live here. To add a new language,
-   copy this file into a new <language>.lproj directory (e.g. fr.lproj) and
+   copy this file into a new <language>.lproj directory (e.g. fi.lproj) and
    translate the right-hand values. No code changes required.
    ============================================================================ */
 
@@ -181,7 +181,10 @@
 "alert.sameFile.title" = "Same file selected";
 "alert.selectTwoVideos.message" = "Choose a left and a right video file first.";
 "alert.selectTwoVideos.title" = "Select two videos";
-"alert.videoCompareNotFound.message" = "Install it with Homebrew:\n\n    brew install video-compare\n\nThen click Re-scan.";
+"alert.videoCompareNotFound.clickRescan" = "Then click Re-scan";
+"alert.videoCompareNotFound.messageInstall" = "Install it with Homebrew:";
+"alert.videoCompareNotFound.messageInstallHomebrew" = "brew install video-compare";
+"alert.videoCompareNotFound.textCopiedToClipboard" = "Text copied to the clipboard";
 "alert.videoCompareNotFound.title" = "video-compare binary not found";
 
 /* --- Additional field labels (inline in views) --- */
@@ -190,6 +193,7 @@
 "field.windowSizeFixed" = "Window";
 
 /* --- Additional help text (inline in views) --- */
+"help.copyToClipboard" = "Copy to clipboard";
 "help.decoder.both" = "FFmpeg video decoder name for both sides, specified as [type?][:options?] (e.g. ':strict=unofficial', ':strict=-2' or 'vvc:strict=experimental')";
 "help.decoder.left" = "Left FFmpeg video decoder name, specified as [type?][:options?] (e.g. ':strict=-2,trust_dec_pts=1' or 'h264:trust_dec_pts=1,rewrite_duration=1')";
 "help.decoder.right" = "Right FFmpeg video decoder name, specified as [type?][:options?] (e.g. ':rewrite_duration=1')";

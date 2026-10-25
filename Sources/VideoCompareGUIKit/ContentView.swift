@@ -110,11 +110,12 @@ public struct ContentView: View {
         }
         .sheet(isPresented: $model.showHomebrewSheet) {
             VStack(spacing: 16) {
-                Text("video-compare not found")
+                Text(Strings.Alert.videoCompareNotFoundTitle)
                     .font(.headline)
-                Text("Install it with Homebrew:")
+                    .foregroundColor(.red)
+                Text(Strings.Alert.videoCompareNotFoundMessageInstall)
                 HStack {
-                    Text("brew install video-compare")
+                    Text(Strings.Alert.videoCompareNotFoundMessageInstallHomebrew)
                         .font(.system(.body, design: .monospaced))
                         .textSelection(.enabled)
                         .padding(.horizontal, 8)
@@ -124,6 +125,7 @@ public struct ContentView: View {
                         .cornerRadius(4)
                     Button {
                         NSPasteboard.general.clearContents()
+                        // The install command should not be localized
                         NSPasteboard.general.setString("brew install video-compare", forType: .string)
                         showCopiedToast = true
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -133,14 +135,14 @@ public struct ContentView: View {
                         Image(systemName: "doc.on.doc")
                     }
                     .buttonStyle(.borderless)
-                    .help("Copy to clipboard")
+                    .help(Strings.Help.copyToClipboard)
                 }
                 if showCopiedToast {
-                    Text("Text copied to the clipboard")
+                    Text(Strings.Alert.textCopiedToClipboard)
                         .font(.caption)
                         .foregroundColor(.green)
                 }
-                Text("Then click Re-scan")
+                Text(Strings.Alert.clickRescan)
                 Button(Strings.Button.ok) {
                     model.showHomebrewSheet = false
                 }

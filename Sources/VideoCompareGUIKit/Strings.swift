@@ -89,6 +89,7 @@ public final class Strings {
         public static let colorTRC: LocalizedStringKey = "help.colorTRC"
         public static let conversionFit: LocalizedStringKey = "help.conversionFit"
         public static let conversionSize: LocalizedStringKey = "help.conversionSize"
+        public static let copyToClipboard: LocalizedStringKey = "help.copyToClipboard"
         public static let decoder: LocalizedStringKey = "help.decoder"
         public static let demuxer: LocalizedStringKey = "help.demuxer"
         public static let displayNumber: LocalizedStringKey = "help.displayNumber"
@@ -278,6 +279,7 @@ public final class Strings {
 
     // MARK: - Alerts
     public struct Alert {
+        public static let clickRescan: LocalizedStringKey = "alert.videoCompareNotFound.clickRescan"
         public static let exitCodeMessageNoOutput: LocalizedStringKey = "alert.exitCode.message.noOutput"
         public static let exitCodeTitle: LocalizedStringKey = "alert.exitCode.title"
         public static let fileNotFoundMessage: LocalizedStringKey = "alert.fileNotFound.message"
@@ -287,7 +289,9 @@ public final class Strings {
         public static let sameFileTitle: LocalizedStringKey = "alert.sameFile.title"
         public static let selectTwoVideosMessage: LocalizedStringKey = "alert.selectTwoVideos.message"
         public static let selectTwoVideosTitle: LocalizedStringKey = "alert.selectTwoVideos.title"
-        public static let videoCompareNotFoundMessage: LocalizedStringKey = "alert.videoCompareNotFound.message"
+        public static let textCopiedToClipboard: LocalizedStringKey = "alert.videoCompareNotFound.textCopiedToClipboard"
+        public static let videoCompareNotFoundMessageInstallHomebrew: LocalizedStringKey = "alert.videoCompareNotFound.messageInstallHomebrew"
+        public static let videoCompareNotFoundMessageInstall: LocalizedStringKey = "alert.videoCompareNotFound.messageInstall"
         public static let videoCompareNotFoundTitle: LocalizedStringKey = "alert.videoCompareNotFound.title"
     }
     
