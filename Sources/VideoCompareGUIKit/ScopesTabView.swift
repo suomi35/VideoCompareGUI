@@ -68,7 +68,7 @@ struct ScopesTabView: View {
                     TextField(Strings.Placeholder.scopeColorMode, text: $model.settings.scopeColorMode)
                         .textFieldStyle(.roundedBorder)
                 }
-                Toggle(Strings.Toggle.scopeNotop, isOn: $model.settings.scopeNotop).help(Strings.Help.helpToggleScopeNotop)
+                Toggle(Strings.Toggle.scopeNoTop, isOn: $model.settings.scopeNoTop).help(Strings.Help.helpToggleScopeNoTop)
                     .toggleStyle(.checkbox)
             }
         }

@@ -89,7 +89,7 @@ public enum CommandLineBuilder {
             let h = s.scopeHeight.trimmed.isEmpty ? "256" : s.scopeHeight.trimmed
             args += ["--scope-size", "\(w)x\(h)"]
         }
-        if s.scopeNotop { args += ["--scope-notop"] }
+        if s.scopeNoTop { args += ["--scope-notop"] }
         addIfNonEmpty(&args, "--scope-color-mode", s.scopeColorMode)
 
         // MARK: Input files

@@ -33,8 +33,8 @@
 "text.demuxer" = "Demuxer / decoder / hwaccel are FFmpeg names, e.g. hwaccel 'videotoolbox' on macOS. A 'Both sides' value takes precedence over per-side values.";
 
 /* --- Field labels --- */
-"field.aspectLock" = "Aspect Lock";
-"field.aspectView" = "Aspect View Mode";
+"field.aspectLock" = "Lock";
+"field.aspectView" = "View Mode";
 "field.autoLoopMode" = "Auto Loop";
 "field.bilinearTexture" = "Bilinear Texture";
 "field.boostTone" = "Boost Tone";
@@ -47,30 +47,27 @@
 "field.decoder" = "Decoder";
 "field.demuxer" = "Demuxer";
 "field.displayNumber" = "Display Number";
-"field.fastAlignment" = "Fast alignment";
+"field.fastAlignment" = "Fast Alignment";
 "field.filterOptions" = "Filter Options";
 "field.filters" = "Filters";
 "field.font" = "Font";
 "field.frameBufferSize" = "Frame Buffer Size";
 "field.hardwareAcceleration" = "Hardware Acceleration";
 "field.height" = "Height";
-"field.histogramWindow" = "Histogram Window";
 "field.leftPeakNits" = "Left Peak Nits";
 "field.libvmafOptions" = "libvmaf Options";
 "field.mode" = "Mode";
 "field.noAutoFilters" = "No Auto Filters";
 "field.rightPeakNits" = "Right Peak Nits";
 "field.scopeColorMode" = "Scope Color Mode";
-"field.scopeNotop" = "Do not keep scopes always on top";
+"field.scopeNoTop" = "Disable always-on-top";
 "field.scopeSize" = "Scope Size";
 "field.timeShift" = "Time Shift";
-"field.toneMapMode" = "Tone Map Mode";
+"field.toneMapMode" = "Mode";
 "field.uiScale" = "UI Scale";
-"field.vectorscopeWindow" = "Vectorscope Window";
-"field.waveformWindow" = "Waveform Window";
 "field.wheelSensitivity" = "Wheel Sensitivity";
 "field.width" = "Width";
-"field.windowSize" = "Window Size";
+"field.windowSize" = "Size";
 
 /* --- Help text --- */
 "help.aspectLock" = "Lock the aspect ratio to content or window.";
@@ -99,7 +96,7 @@
 "help.noAutoFilters" = "Disable automatically injecting filters for deinterlacing, DAR correction, frame rate harmonization, rotation and colorimetry.";
 "help.rightPeakNits" = "Right peak luminance, in nits.";
 "help.scopeColorMode" = "Scope color mode.";
-"help.scopeNotop" = "Do not keep scopes always on top.";
+"help.scopeNoTop" = "Do not keep scopes always on top.";
 "help.scopeSize" = "Scope resolution (W×H).";
 "help.timeShift" = "Time shift between the two inputs, in seconds.";
 "help.toneMapMode" = "Tone mapping mode.";
@@ -149,14 +146,14 @@
 "toggle.fastAlignment" = "Fast alignment";
 "toggle.fullscreen" = "Fullscreen";
 "toggle.highDPI" = "High DPI";
-"toggle.histogramWindow" = "Histogram Window";
+"toggle.histogramWindow" = "Show Window";
 "toggle.noAutoFilters" = "No Auto Filters";
-"toggle.scopeNotop" = "Do not keep scopes always on top";
+"toggle.scopeNoTop" = "Do not keep scopes always on top";
 "toggle.subtractionMode" = "Subtraction Mode";
 "toggle.tenBit" = "10-bit";
-"toggle.vectorscopeWindow" = "Vectorscope Window";
+"toggle.vectorscopeWindow" = "Show Window";
 "toggle.verbose" = "Verbose";
-"toggle.waveformWindow" = "Waveform Window";
+"toggle.waveformWindow" = "Show Window";
 
 /* --- Footer / command preview --- */
 "button.clearRecents" = "Clear Recents";
@@ -184,13 +181,13 @@
 "alert.sameFile.title" = "Same file selected";
 "alert.selectTwoVideos.message" = "Choose a left and a right video file first.";
 "alert.selectTwoVideos.title" = "Select two videos";
-"alert.videoCompareNotFound.message" = "Install it with Homebrew:\n\nbrew install video-compare\n\nThen click Re-scan.";
-"alert.videoCompareNotFound.title" = "video-compare not found";
+"alert.videoCompareNotFound.message" = "Install it with Homebrew:\n\n    brew install video-compare\n\nThen click Re-scan.";
+"alert.videoCompareNotFound.title" = "video-compare binary not found";
 
 /* --- Additional field labels (inline in views) --- */
 "field.aspectSection" = "Aspect";
 "field.output" = "Output";
-"field.windowSizeFixed" = "Window Size";
+"field.windowSizeFixed" = "Window";
 
 /* --- Additional help text (inline in views) --- */
 "help.decoder.both" = "FFmpeg video decoder name for both sides, specified as [type?][:options?] (e.g. ':strict=unofficial', ':strict=-2' or 'vvc:strict=experimental')";
@@ -206,12 +203,12 @@
 "help.hwaccel.left" = "Left FFmpeg video hardware acceleration, specified as [type][:device?[:options?]] (e.g. 'cuda', 'cuda:1' or 'vulkan')";
 "help.hwaccel.right" = "Right FFmpeg video hardware acceleration, specified as [type][:device?[:options?]]";
 "help.rescan" = "Re-scan for the video-compare executable";
-"help.swap.left.right" + "Swap left and right (⇧⌘X)";
+"help.swap.left.right" = "Swap left and right (⇧⌘X)";
 "help.toggle.bilinearTexture" = "Toggle bilinear video texture interpolation, replacing nearest-neighbor filtering.";
 "help.toggle.fastAlignment" = "Toggle fast bilinear scaling for aligning input source resolutions, replacing high-quality bicubic and chroma-accurate interpolation.";
 "help.toggle.histogramWindow" = "Open always-on-top histogram scopes window.";
 "help.toggle.noAutoFilters" = "Disable the default behaviour of automatically injecting filters for deinterlacing, DAR correction, frame rate harmonization, rotation and colorimetry.";
-"help.toggle.scopeNotop" = "Do not keep scope windows always on top.";
+"help.toggle.scopeNoTop" = "Do not keep scope windows always on top.";
 "help.toggle.scopeSize" = "Set initial scope window size as WxH (total width by height); scope windows are resizable; default 1024x256.";
 "help.toggle.vectorscopeWindow" = "Open always-on-top vectorscope scopes window.";
 "help.toggle.waveformWindow" = "Open always-on-top waveform scopes window.";
@@ -254,11 +251,13 @@
 /* --- About panel --- */
 "about.buildNumber" = "build";
 "about.buildVersion" = "Version";
-"about.creditsText" = "GUI modeled after TetzkatLipHoka/VideoCompareGUI (Windows).";
+"about.creditsTetzkatLipHoka" = "TetzkatLipHoka/VideoCompareGUI";
+"about.creditsTetzkatLipHokaPrefix" = "Inspiration taken from";
+"about.creditsTetzkatLipHokaSuffix" = "(Windows)";
 "about.creditsTitle" = "Credits";
-"about.descriptionPrefix" = "A native macOS GUI for the ";
-"about.descriptionSuffix" = " written in Swift/SwiftUI";
-"about.licenseText" = "GPLv2 — same terms as pixop/video-compare";
+"about.descriptionPrefix" = "A native macOS GUI for the";
+"about.descriptionSuffix" = "written in Swift/SwiftUI";
+"about.licenseText" = "GPLv2";
 "about.licenseTitle" = "License";
 "about.videoCompareTool" = "Video-Compare Tool";
 

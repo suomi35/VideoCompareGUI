@@ -34,13 +34,14 @@ public struct AboutView: View {
 
             Text(appName)
                 .font(.title2.weight(.semibold))
+            
             Text("Version \(version) (build \(build))")
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
             Divider()
 
-            HStack(alignment: .top, spacing: 4) {
+            HStack(alignment: .top, spacing: 2) {
                 Text(Strings.About.descriptionPrefix)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
@@ -57,10 +58,11 @@ public struct AboutView: View {
 
             Spacer(minLength: 8)
 
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 8) {
                 Text(Strings.About.licenseTitle)
                     .font(.caption2.weight(.bold))
                     .foregroundStyle(.secondary)
+                
                 Text(Strings.About.licenseText)
                     .font(.caption)
                     .foregroundStyle(.secondary)
@@ -71,9 +73,20 @@ public struct AboutView: View {
                 Text(Strings.About.creditsTitle)
                     .font(.caption2.weight(.bold))
                     .foregroundStyle(.secondary)
-                Text(Strings.About.creditsText)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                
+                HStack(alignment: .top, spacing: 2) {
+                    Text(Strings.About.creditsTetzkatLipHokaPrefix)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    
+                    Link(Strings.About.creditsTetzkatLipHoka, destination: URL(string: "https://github.com/TetzkatLipHoka/VideoCompareGUI")!)
+                        .font(.caption)
+                        .underline()
+                    
+                    Text(Strings.About.creditsTetzkatLipHokaSuffix)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
             }
 
             Spacer(minLength: 8)

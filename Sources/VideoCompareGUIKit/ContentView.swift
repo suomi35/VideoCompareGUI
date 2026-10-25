@@ -75,6 +75,7 @@ private struct InitialFocusAnchor: NSViewRepresentable {
 
 public struct ContentView: View {
     @EnvironmentObject private var model: AppModel
+    @State private var showCopiedToast = false
 
     public init() {}
 
@@ -107,6 +108,47 @@ public struct ContentView: View {
             Divider()
             footer
         }
+        .sheet(isPresented: $model.showHomebrewSheet) {
+            VStack(spacing: 16) {
+                Text("video-compare not found")
+                    .font(.headline)
+                Text("Install it with Homebrew:")
+                HStack {
+                    Text("brew install video-compare")
+                        .font(.system(.body, design: .monospaced))
+                        .textSelection(.enabled)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 4)
+                        .background(Color.black.opacity(0.8))
+                        .foregroundColor(.white)
+                        .cornerRadius(4)
+                    Button {
+                        NSPasteboard.general.clearContents()
+                        NSPasteboard.general.setString("brew install video-compare", forType: .string)
+                        showCopiedToast = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            showCopiedToast = false
+                        }
+                    } label: {
+                        Image(systemName: "doc.on.doc")
+                    }
+                    .buttonStyle(.borderless)
+                    .help("Copy to clipboard")
+                }
+                if showCopiedToast {
+                    Text("Text copied to the clipboard")
+                        .font(.caption)
+                        .foregroundColor(.green)
+                }
+                Text("Then click Re-scan")
+                Button(Strings.Button.ok) {
+                    model.showHomebrewSheet = false
+                }
+                .keyboardShortcut(.defaultAction)
+            }
+            .padding(24)
+            .frame(minWidth: 320)
+        }
         .alert(item: Binding(
             get: { model.alert },
             set: { model.alert = $0 }
@@ -117,6 +159,7 @@ public struct ContentView: View {
                 dismissButton: .default(Text(Strings.Button.ok))
             )
         }
+
     }
 
     // MARK: Header (executable status)

@@ -87,7 +87,7 @@ public enum TestHooks {
         s.scopeSizeEnabled = true
         s.scopeWidth = "800"
         s.scopeHeight = "200"
-        s.scopeNotop = true
+        s.scopeNoTop = true
         return CommandLineBuilder.buildArguments(
             settings: s,
             leftFile: "/tmp/left file.mp4",

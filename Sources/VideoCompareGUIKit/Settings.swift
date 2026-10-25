@@ -66,7 +66,7 @@ public struct Settings: Codable, Equatable {
     public var scopeSizeEnabled = false      // --scope-size WxH
     public var scopeWidth = "1024"
     public var scopeHeight = "256"
-    public var scopeNotop = false            // --scope-notop
+    public var scopeNoTop = false            // --scope-notop
     public var scopeColorMode = ""           // --scope-color-mode
 }
 

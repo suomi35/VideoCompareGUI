@@ -124,7 +124,7 @@ public enum SelfTest {
             s.histogramWindow = true
             s.vectorscopeWindow = true
             s.waveformWindow = true
-            s.scopeNotop = true
+            s.scopeNoTop = true
             let a = args(s)
             for flag in ["--histogram-window", "--vectorscope-window", "--waveform-window", "--scope-notop"] {
                 check("scope flag \(flag)", a.contains(flag))

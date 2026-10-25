@@ -34,6 +34,7 @@ public final class AppModel: ObservableObject {
     @Published var lastCommandPreview: String = ""
     @Published var lastRunOutput: String = ""
     @Published var alert: AlertMessage?
+    @Published var showHomebrewSheet = false
 
     private let launcher = Launcher()
     private let defaults: UserDefaults
@@ -51,7 +52,7 @@ public final class AppModel: ObservableObject {
 
     var executablePathLabel: String {
         guard let executableURL else {
-            return String(localized: "alert.videoCompareNotFound.message")
+            return String(localized: "alert.videoCompareNotFound.title")
         }
         let version = executableVersion.map { " · \($0)" } ?? ""
         return "\(executableURL.path)\(version)"
@@ -70,6 +71,7 @@ public final class AppModel: ObservableObject {
             }
         } else {
             executableVersion = nil
+            showHomebrewSheet = true
         }
     }
 
