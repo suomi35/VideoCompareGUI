@@ -5,6 +5,11 @@ import SwiftUI
 public final class Strings {
     private init() {}
 
+    // MARK: - App strings
+    public struct App {
+        public static let name = "Video Compare GUI";
+    }
+    
     // MARK: - Section titles
     public struct Section {
         public static let aspect: LocalizedStringKey = "section.aspect"
@@ -252,7 +257,6 @@ public final class Strings {
     public struct Label {
         public static let commandPreview: LocalizedStringKey = "label.commandPreview"
         public static let recents: LocalizedStringKey = "label.recents"
-        public static let windowTitle: LocalizedStringKey = "window.title"
     }
 
     // MARK: - Tips

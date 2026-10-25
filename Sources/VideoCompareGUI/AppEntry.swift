@@ -6,14 +6,17 @@ struct VideoCompareGUIEntry: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @StateObject private var model = AppModel()
     @State private var showAbout = false
+    private let appName: String
 
     init() {
         // Hidden headless test hooks (see TestHooks.swift).
         if TestHooks.handleIfNeeded() { exit(0) }
+        let info = Bundle.main.infoDictionary ?? [:]
+        self.appName = info["CFBundleName"] as! String
     }
 
     var body: some Scene {
-        WindowGroup(Strings.Label.windowTitle) {
+        WindowGroup(appName) {
             ContentView()
                 .environmentObject(model)
                 .background(AppLinker(model: model))
@@ -36,7 +39,7 @@ struct VideoCompareGUIEntry: App {
                     .keyboardShortcut("k", modifiers: [.command, .shift])
             }
             CommandGroup(replacing: .appInfo) {
-                Button("About \(Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "Video Compare")…") {
+                Button(Strings.Button.about) {
                     showAbout = true
                 }
             }
