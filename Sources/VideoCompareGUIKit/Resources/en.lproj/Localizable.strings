@@ -6,7 +6,7 @@
    translate the right-hand values. No code changes required.
    ============================================================================ */
 
-/* --- Menu items --- */
+/* --- Menu items (app menu bar) --- */
 "menu.about" = "About Video Compare GUI";
 "menu.choose.left" = "Choose Left Video…";
 "menu.choose.right" = "Choose Right Video…";
@@ -14,7 +14,7 @@
 "menu.launch" = "Launch Comparison";
 "menu.swap" = "Swap Sides";
 
-/* --- Section titles --- */
+/* --- Section titles (group headers in each tab's Form) --- */
 "section.aspect" = "Aspect";
 "section.colorimetry" = "Colorimetry";
 "section.layout" = "Layout";
@@ -28,8 +28,7 @@
 "text.colorValues" = "Color values accept either a single value for both sides, or left:right (e.g. 'bt2020nc:' or 'pc:tv'). Leave empty to let video-compare decide.";
 "text.demuxer" = "Demuxer / decoder / hwaccel are FFmpeg names, e.g. hwaccel 'videotoolbox' on macOS. A 'Both sides' value takes precedence over per-side values.";
 
-/* --- Field labels --- */
-
+/* --- Field labels (row labels across all tabs) --- */
 "field.aspectLock" = "Lock";
 "field.aspectSection" = "Aspect";
 "field.aspectView" = "View Mode";
@@ -69,7 +68,7 @@
 "field.windowSize" = "Size";
 "field.windowSizeFixed" = "Window";
 
-/* --- Help text --- */
+/* --- Help text (tooltips on field rows) --- */
 "help.aspectLock" = "Lock the aspect ratio to content or window";
 "help.aspectView" = "Choose how the video is fit into the view";
 "help.autoLoopMode" = "Auto-repeat the comparison";
@@ -138,7 +137,7 @@
 "text.filters" = "Demuxer / decoder / hwaccel are FFmpeg names, e.g. hwaccel 'videotoolbox' on macOS. A 'Both sides' value takes precedence over per-side values.";
 "text.scopes" = "Scopes open as separate always-on-top windows next to the comparison window";
 
-/* --- Picker options --- */
+/* --- Picker options (dropdown values) --- */
 "picker.auto" = "Auto";
 "picker.bothSides" = "Both Sides";
 "picker.bottomVideo" = "Bottom Video";
@@ -173,7 +172,7 @@
 "picker.waveform" = "Waveform";
 "picker.windowRatio" = "Window ratio";
 
-/* --- Toggle labels --- */
+/* --- Toggle labels (checkboxes) --- */
 "toggle.bilinearTexture" = "Bilinear Texture";
 "toggle.differentPerSide" = "Different per side";
 "toggle.fastAlignment" = "Fast alignment";
@@ -188,7 +187,7 @@
 "toggle.verbose" = "Verbose";
 "toggle.waveformWindow" = "Show Window";
 
-/* --- Footer / command preview --- */
+/* --- Footer / command preview (bottom bar) --- */
 "button.clearRecents" = "Clear Recents";
 "button.copyOutput" = "Copy Output";
 "button.launch" = "Launch";
@@ -197,14 +196,14 @@
 "label.recents" = "Recents";
 "tip.dragVideos" = "Tip: drag two video files onto the app icon to load them.";
 
-/* --- Tab items --- */
+/* --- Tab labels (tab bar) --- */
 "tab.colorTone" = "Color & Tone";
 "tab.display" = "Display";
 "tab.filters" = "Filters & Decoders";
 "tab.general" = "General";
 "tab.scopes" = "Scopes";
 
-/* --- Alerts --- */
+/* --- Alerts (modal dialogs) --- */
 "alert.exitCode.message.noOutput" = "No error output was captured.";
 "alert.exitCode.title" = "video-compare exited with code";
 "alert.fileNotFound.message" = "One of the selected videos no longer exists on disk.";
