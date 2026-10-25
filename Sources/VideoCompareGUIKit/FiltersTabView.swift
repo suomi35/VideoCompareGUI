@@ -67,7 +67,7 @@ struct FiltersTabView: View {
                         Text(Strings.Picker.native).tag("native")
                     }
                     .labelsHidden()
-                    .frame(width: 180)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
             }
             Section(Strings.Section.scaling) {

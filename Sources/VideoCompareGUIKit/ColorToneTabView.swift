@@ -39,7 +39,7 @@ struct ColorToneTabView: View {
                         Text(Strings.Picker.relative).tag("rel")
                     }
                     .labelsHidden()
-                    .frame(width: 180)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 FieldRow(label: Strings.Field.leftPeakNits, help: Strings.Help.leftPeakNits) {
                     TextField(Strings.Placeholder.peakNits, text: $model.settings.leftPeakNits)

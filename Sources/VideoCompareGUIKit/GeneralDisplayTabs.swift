@@ -17,7 +17,7 @@ struct GeneralTabView: View {
                         Text(Strings.Picker.pingPong).tag("pp")
                     }
                     .labelsHidden()
-                    .frame(width: 180)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 FieldRow(label: Strings.Field.frameBufferSize, help: Strings.Help.frameBufferSize) {
                     TextField(Strings.Placeholder.frameBufferSize, text: $model.settings.frameBufferSize)
@@ -52,7 +52,7 @@ struct GeneralTabView: View {
                         Text(Strings.Picker.sarasa).tag("sarasa")
                     }
                     .labelsHidden()
-                    .frame(width: 180)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
             }
             Section(Strings.Field.output) {
@@ -77,7 +77,7 @@ struct DisplayTabView: View {
                         Text(Strings.Picker.hstack).tag("hstack")
                     }
                     .labelsHidden()
-                    .frame(width: 180)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
             }
             Section(Strings.Field.windowSizeFixed) {
@@ -88,7 +88,7 @@ struct DisplayTabView: View {
                         Text(Strings.Picker.fit).tag("fit")
                     }
                     .labelsHidden()
-                    .frame(width: 180)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 if model.settings.windowSizeMode == "fixed" {
                     VStack(alignment: .trailing) {
@@ -121,7 +121,7 @@ struct DisplayTabView: View {
                         Text(Strings.Picker.contentRatio).tag("content")
                     }
                     .labelsHidden()
-                    .frame(width: 180)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 FieldRow(label: Strings.Field.aspectView, help: Strings.Help.aspectView) {
                     Picker("", selection: $model.settings.aspectViewMode) {
@@ -133,7 +133,7 @@ struct DisplayTabView: View {
                         Text(Strings.Picker.oneByOne).tag("1:1")
                     }
                     .labelsHidden()
-                    .frame(width: 180)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                 }
             }
         }
