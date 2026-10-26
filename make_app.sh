@@ -84,9 +84,13 @@ fi
 case "${CREATE_DMG:-}" in
   1|true|yes)
     DMG="build/Video-Compare-GUI.dmg"
+    STAGE=$(mktemp -d)
+    cp -R "$APP" "$STAGE/"
+    ln -s /Applications "$STAGE/Applications"
     mkdir -p build
     rm -f "$DMG"
-    hdiutil create -volname "Video Compare GUI" -srcfolder "$APP" -ov -format UDZO "$DMG"
+    hdiutil create -volname "Video Compare GUI" -srcfolder "$STAGE" -ov -format UDZO "$DMG"
+    rm -rf "$STAGE"
     echo "==> Created $DMG"
     ;;
 esac
