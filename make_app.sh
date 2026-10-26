@@ -56,6 +56,16 @@ rm -rf "$TMPBASE"
 
 printf 'APPL????' > "$APP/Contents/PkgInfo"
 
+# Inject version into Info.plist (CI sets VERSION/BUILD env vars)
+if [ -n "${VERSION:-}" ]; then
+    /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION" "$APP/Contents/Info.plist" 2>/dev/null \
+      || /usr/libexec/PlistBuddy -c "Add :CFBundleShortVersionString string $VERSION" "$APP/Contents/Info.plist"
+fi
+if [ -n "${BUILD:-}" ]; then
+    /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD" "$APP/Contents/Info.plist" 2>/dev/null \
+      || /usr/libexec/PlistBuddy -c "Add :CFBundleVersion string $BUILD" "$APP/Contents/Info.plist"
+fi
+
 echo "==> Ad-hoc signing..."
 codesign --force --sign - "$APP"
 

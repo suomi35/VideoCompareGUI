@@ -3,15 +3,40 @@ name: CI
 on:
   push:
     branches: [main, master]
-  pull_request:
-    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
-  build-and-test:
+  build-and-release:
     runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Determine version
+        id: version
+        run: |
+          LATEST=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          IFS='.' read -r MAJOR MINOR PATCH <<< "${LATEST#v}"
+          PATCH=$((PATCH + 1))
+          VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+          BUILD="${GITHUB_RUN_NUMBER}"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "build=$BUILD" >> "$GITHUB_OUTPUT"
+          echo "Next version: $VERSION (build $BUILD)"
+
+      - name: Generate Version.swift
+        run: |
+          cat > Sources/VideoCompareGUI/Version.swift <<VSWIFT
+          public enum AppVersion {
+              public static let marketing = "${{ steps.version.outputs.version }}"
+              public static let build = "${{ steps.version.outputs.build }}"
+          }
+          VSWIFT
 
       - name: Build (debug)
         run: swift build
@@ -26,11 +51,20 @@ jobs:
         run: swift build -c release
 
       - name: Assemble app bundle
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          BUILD: ${{ steps.version.outputs.build }}
         run: ./make_app.sh
 
-      - name: Upload app bundle
-        uses: actions/upload-artifact@v5
+      - name: Zip app bundle
+        run: |
+          cd build
+          ditto -c -k --keepParent "Video Compare GUI.app" "Video-Compare-GUI.zip"
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
         with:
-          name: Video-Compare-GUI
-          path: build/Video Compare GUI.app
-          if-no-files-found: warn
+          tag_name: ${{ steps.version.outputs.version }}
+          name: ${{ steps.version.outputs.version }}
+          files: build/Video-Compare-GUI.zip
+          generate_release_notes: true
