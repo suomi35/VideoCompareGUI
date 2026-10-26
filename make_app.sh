@@ -17,7 +17,7 @@ cp Resources/Info.plist "$APP/Contents/Info.plist"
 echo "==> Copying localized resources (.lproj) into app bundle..."
 # SwiftPM compiles .lproj directories into the module resource bundle.
 # Copy them into the app's Contents/Resources so Bundle.main finds them at runtime.
-RESOURCE_BUNDLE=".build/release/VideoCompareGUI_VideoCompareGUIKit.bundle"
+RESOURCE_BUNDLE=".build/release/VideoCompareGUI_VideoCompareGUI.bundle"
 if [ -d "$RESOURCE_BUNDLE" ]; then
     for lproj in "$RESOURCE_BUNDLE"/*.lproj; do
         if [ -d "$lproj" ]; then

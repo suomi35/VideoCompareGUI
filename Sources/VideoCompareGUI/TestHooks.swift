@@ -1,5 +1,4 @@
 import Foundation
-import VideoCompareGUIKit
 
 /// Hidden command-line hooks used for headless verification of the argument
 /// builder (`--selftest`, `--print-command`). Not part of the public UI.
