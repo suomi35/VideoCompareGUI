@@ -8,8 +8,9 @@ A native macOS GUI for pixop's [Video-Compare Tool](https://github.com/pixop/vid
 
 ## Requirements
 
-- macOS 13 (Ventura) or later
 - [video-compare](https://formulae.brew.sh/formula/video-compare): `brew install video-compare`
+- To build from source: macOS 14+ with Xcode 15+ (Swift 5.10+) — only the Command Line Tools are required, not the full Xcode IDE
+- The compiled binary will run on macOS 13 (Ventura) or later
 
 ## Build & Run
 
@@ -20,7 +21,6 @@ cd VideoCompareGUI
 open "build/Video Compare.app"    # or: ./make_app.sh --install  → /Applications
 ```
 
-Built with Swift Package Manager — only the Xcode Command Line Tools are required, not the full Xcode IDE
 
 ## Download
 
