@@ -10,22 +10,27 @@ enum VideoCompareLocator {
         "/opt/local/bin/video-compare",      // MacPorts
     ]
 
-    /// Returns the video-compare executable URL, or nil if not found.
-    static func locate() -> URL? {
-        let fm = FileManager.default
-        for path in wellKnownPaths where fm.isExecutableFile(atPath: path) {
+    /// Pure, testable path resolution: given a list of candidate paths and an
+    /// optional PATH environment string, returns the first existing executable.
+    static func locate(candidates: [String], pathEnv: String?, fileExists: (String) -> Bool) -> URL? {
+        for path in candidates where fileExists(path) {
             return URL(fileURLWithPath: path)
         }
-        // Fall back to a PATH scan (covers custom Homebrew prefixes, etc.)
-        if let path = ProcessInfo.processInfo.environment["PATH"] {
+        if let path = pathEnv {
             for dir in path.split(separator: ":") {
                 let candidate = "\(dir)/video-compare"
-                if fm.isExecutableFile(atPath: candidate) {
+                if fileExists(candidate) {
                     return URL(fileURLWithPath: candidate)
                 }
             }
         }
         return nil
+    }
+
+    /// Returns the video-compare executable URL, or nil if not found.
+    static func locate() -> URL? {
+        let fm = FileManager.default
+        return locate(candidates: wellKnownPaths, pathEnv: ProcessInfo.processInfo.environment["PATH"]) { fm.isExecutableFile(atPath: $0) }
     }
 
     /// Runs `video-compare --version` and returns the trimmed output, or nil.

@@ -13,6 +13,11 @@ let package = Package(
             path: "Sources/VideoCompareGUI",
             resources: [.process("Resources"), .process("../../Resources/Assets.xcassets")],
             swiftSettings: [.unsafeFlags(["-Xcc", "-DENABLE_DEBUG_DYLIB=Yes"])]
+        ),
+        .testTarget(
+            name: "VideoCompareGUITests",
+            dependencies: ["VideoCompareGUI"],
+            path: "Tests/VideoCompareGUITests"
         )
     ]
 )
