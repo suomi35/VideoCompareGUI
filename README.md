@@ -24,7 +24,7 @@ Built with Swift Package Manager — only the Xcode Command Line Tools are requi
 
 ## Download
 
-Precompiled binaries are available on the [GitHub Releases](../../releases) page — download the latest `.dmg`, open it, and drag the app to `/Applications`. No compilation required.
+Precompiled binaries are available on the [Releases](https://github.com/suomi35/VideoCompareGUI/releases) page — download the latest `.dmg`, open it, and drag the app to `Applications`. No compilation required.
 
 ## First Launch (Gatekeeper)
 
@@ -60,7 +60,7 @@ The warning will not reappear after a successful first launch
 - **Persistence** — options, last files and recents survive restarts
 - **Localization** — all user-facing strings are externalized via `Localizable.strings`
   (English included); additional languages can be added by creating a new
-  `.lproj` directory under `Sources/VideoCompareGUIKit/Resources/`
+  `.lproj` directory under `Sources/VideoCompareGUI/Resources/`
 
 Shortcuts: `⇧⌘1` / `⇧⌘2` choose videos · `⇧⌘X` swap · `⇧⌘K` clear · `⌘↩` launch
 
