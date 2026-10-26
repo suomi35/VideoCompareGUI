@@ -16,6 +16,9 @@ jobs:
       - name: Build (debug)
         run: swift build
 
+      - name: Run unit tests
+        run: swift test
+
       - name: Run self-test
         run: ./.build/debug/VideoCompareGUI --selftest
 
