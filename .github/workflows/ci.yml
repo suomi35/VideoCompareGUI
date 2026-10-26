@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build (debug)
+        run: swift build
+
+      - name: Run self-test
+        run: ./.build/debug/VideoCompareGUI --selftest
+
+      - name: Build release binary
+        run: swift build -c release
+
+      - name: Assemble app bundle
+        run: ./make_app.sh
+
+      - name: Upload app bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: Video-Compare-GUI
+          path: build/Video Compare GUI.app
+          if-no-files-found: warn
