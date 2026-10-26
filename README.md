@@ -20,22 +20,32 @@ cd VideoCompareGUI
 open "build/Video Compare.app"    # or: ./make_app.sh --install  → /Applications
 ```
 
-Built with Swift Package Manager — only the Xcode Command Line Tools are required, not the full Xcode IDE.
+Built with Swift Package Manager — only the Xcode Command Line Tools are required, not the full Xcode IDE
+
+## Download
+
+Precompiled binaries are available on the [GitHub Releases](../../releases) page — download the latest `.dmg`, open it, and drag the app to `/Applications`. No compilation required.
 
 ## First Launch (Gatekeeper)
 
 The app is ad-hoc signed and is not notarized, so macOS may warn
 "cannot be opened because it is from an unidentified developer" on first launch.
-To bypass:
+You have a couple of options to bypass:
 
-- Right-click (or Control-click) the app → **Open** → **Open** in the dialog  
-or
-- Run the following in Terminal:
+##### Method 1: System Settings
+1. Open the Apple menu () > **System Settings**
+2. Navigate to **Privacy & Security**
+3. Scroll down to the **Security** section, where you will see a message stating that the app was blocked from opening
+4. Click **Open Anyway** and confirm using Touch ID or your administrator password
+
+##### Method 2: via Terminal
+&emsp;&emsp;&emsp;Run the following in Terminal:
+   
    ```sh
    xattr -dr com.apple.quarantine "/Applications/Video Compare GUI.app"
    ```
 
-After the first launch the warning does not reappear.
+The warning will not reappear after a successful first launch
 
 ## Features
 
@@ -81,4 +91,4 @@ translated `Localizable.strings` file and rebuild.
 ## License
 
 This GUI is provided under the same terms as video-compare (GPLv2)  
-See https://github.com/pixop/video-compare for the original tool and its license.
+See https://github.com/pixop/video-compare for the original tool and its license
