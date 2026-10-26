@@ -79,3 +79,14 @@ else
     echo "    Install with: ./make_app.sh --install"
     echo "    Or run in place: open '$APP'"
 fi
+
+# Optional: create a DMG if CREATE_DMG=1
+case "${CREATE_DMG:-}" in
+  1|true|yes)
+    DMG="build/Video-Compare-GUI.dmg"
+    mkdir -p build
+    rm -f "$DMG"
+    hdiutil create -volname "Video Compare GUI" -srcfolder "$APP" -ov -format UDZO "$DMG"
+    echo "==> Created $DMG"
+    ;;
+esac

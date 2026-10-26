@@ -54,17 +54,13 @@ jobs:
         env:
           VERSION: ${{ steps.version.outputs.version }}
           BUILD: ${{ steps.version.outputs.build }}
+          CREATE_DMG: "1"
         run: ./make_app.sh
-
-      - name: Zip app bundle
-        run: |
-          cd build
-          ditto -c -k --keepParent "Video Compare GUI.app" "Video-Compare-GUI.zip"
 
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.version }}
           name: ${{ steps.version.outputs.version }}
-          files: build/Video-Compare-GUI.zip
+          files: build/Video-Compare-GUI.dmg
           generate_release_notes: true
