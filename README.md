@@ -22,6 +22,21 @@ open "build/Video Compare.app"    # or: ./make_app.sh --install  → /Applicatio
 
 Built with Swift Package Manager — only the Xcode Command Line Tools are required, not the full Xcode IDE.
 
+## First Launch (Gatekeeper)
+
+The app is ad-hoc signed and is not notarized, so macOS may warn
+"cannot be opened because it is from an unidentified developer" on first launch.
+To bypass:
+
+- Right-click (or Control-click) the app → **Open** → **Open** in the dialog  
+or
+- Run the following in Terminal:
+   ```sh
+   xattr -dr com.apple.quarantine "/Applications/Video Compare GUI.app"
+   ```
+
+After the first launch the warning does not reappear.
+
 ## Features
 
 - **Input wells** — click to choose, or drop video files onto the wells or the
