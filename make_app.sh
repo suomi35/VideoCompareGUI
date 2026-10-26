@@ -47,7 +47,7 @@ cp "$SRC/icon_512x512.png"    "$TMPIconset/icon_512x512.png"
 cp "$SRC/icon_512x512@2x.png" "$TMPIconset/icon_512x512@2x.png"
 if iconutil -c icns "$TMPIconset" -o "$APP/Contents/Resources/AppIcon.icns"; then
     echo "==> Bundled AppIcon.icns"
-    /usr/libexec/PlistBuddy -c "Set :CFBundleIconFile AppIcon" "$APP/Contents/Info.plist" \
+    /usr/libexec/PlistBuddy -c "Set :CFBundleIconFile AppIcon" "$APP/Contents/Info.plist" 2>/dev/null \
       || /usr/libexec/PlistBuddy -c "Add :CFBundleIconFile string AppIcon" "$APP/Contents/Info.plist"
 else
     echo "==> WARNING: iconutil failed - app will have no icon"
