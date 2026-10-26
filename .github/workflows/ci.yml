@@ -24,7 +24,7 @@ jobs:
           IFS='.' read -r MAJOR MINOR PATCH <<< "${LATEST#v}"
           PATCH=$((PATCH + 1))
           VERSION="v${MAJOR}.${MINOR}.${PATCH}"
-          BUILD=$((134 + GITHUB_RUN_NUMBER))
+          BUILD=${GITHUB_RUN_NUMBER}
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "build=$BUILD" >> "$GITHUB_OUTPUT"
           echo "Next version: $VERSION (build $BUILD)"
