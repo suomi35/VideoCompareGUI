@@ -4,9 +4,13 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-echo "==> Building release binary (universal)..."
+echo "==> Building release binary (${ARCH:-universal})..."
 if [ ! -f .build/release/VideoCompareGUI ]; then
-    swift build -c release --arch arm64 --arch x86_64 -Xlinker -macos_version_min -Xlinker 13.0.0
+    if [ -n "${ARCH:-}" ]; then
+        swift build -c release --arch "$ARCH" -Xlinker -macos_version_min -Xlinker 13.0.0
+    else
+        swift build -c release --arch arm64 --arch x86_64 -Xlinker -macos_version_min -Xlinker 13.0.0
+    fi
 else
     echo "    Binary already present at .build/release/VideoCompareGUI (pre-built by CI matrix), skipping build."
 fi
@@ -95,7 +99,7 @@ fi
 # Optional: create a DMG if CREATE_DMG=1
 case "${CREATE_DMG:-}" in
   1|true|yes)
-    DMG="build/Video-Compare-GUI.dmg"
+    DMG="build/Video-Compare-GUI-${ARCH:-universal}.dmg"
     STAGE=$(mktemp -d)
     cp -R "$APP" "$STAGE/"
     ln -s /Applications "$STAGE/Applications"

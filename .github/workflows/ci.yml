@@ -48,14 +48,19 @@ jobs:
       - name: Run self-test
         run: ./.build/debug/VideoCompareGUI --selftest
 
-      - name: Build release binary (arm64)
-        run: swift build -c release --arch arm64 -Xlinker -macos_version_min -Xlinker 13.0.0
+      - name: Build release binary (arm64) and assemble app bundle
+        env:
+          ARCH: arm64
+          VERSION: ${{ steps.version.outputs.version }}
+          BUILD: ${{ steps.version.outputs.build }}
+          CREATE_DMG: "1"
+        run: ./make_app.sh
 
-      - name: Upload arm64 binary
+      - name: Upload arm64 DMG
         uses: actions/upload-artifact@v5
         with:
-          name: video-compare-gui-arm64
-          path: .build/release/VideoCompareGUI
+          name: video-compare-gui-arm64-dmg
+          path: build/Video-Compare-GUI-arm64.dmg
           if-no-files-found: error
 
   build-x86_64:
@@ -88,14 +93,19 @@ jobs:
           }
           VSWIFT
 
-      - name: Build release binary (x86_64)
-        run: swift build -c release --arch x86_64 -Xlinker -macos_version_min -Xlinker 13.0.0
+      - name: Build release binary (x86_64) and assemble app bundle
+        env:
+          ARCH: x86_64
+          VERSION: ${{ steps.version.outputs.version }}
+          BUILD: ${{ steps.version.outputs.build }}
+          CREATE_DMG: "1"
+        run: ./make_app.sh
 
-      - name: Upload x86_64 binary
+      - name: Upload x86_64 DMG
         uses: actions/upload-artifact@v5
         with:
-          name: video-compare-gui-x86_64
-          path: .build/release/VideoCompareGUI
+          name: video-compare-gui-x86_64-dmg
+          path: build/Video-Compare-GUI-x86_64.dmg
           if-no-files-found: error
 
   create-release:
@@ -106,33 +116,6 @@ jobs:
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
-
-      - name: Download arm64 binary
-        uses: actions/download-artifact@v5
-        with:
-          name: video-compare-gui-arm64
-          path: .build/release/
-
-      - name: Download x86_64 binary
-        uses: actions/download-artifact@v5
-        with:
-          name: video-compare-gui-x86_64
-          path: /tmp/x86_64/
-
-      - name: Restore execute permissions on downloaded binaries
-        run: |
-          chmod +x .build/release/VideoCompareGUI
-          chmod +x /tmp/x86_64/VideoCompareGUI
-
-      - name: Create universal binary with lipo
-        run: |
-          mkdir -p .build/release
-          mv /tmp/x86_64/VideoCompareGUI /tmp/VideoCompareGUI-x86_64
-          lipo -create -output .build/release/VideoCompareGUI \
-            .build/release/VideoCompareGUI \
-            /tmp/VideoCompareGUI-x86_64
-          chmod +x .build/release/VideoCompareGUI
-          lipo -archs .build/release/VideoCompareGUI
 
       - name: Determine version
         id: version
@@ -145,17 +128,24 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "build=$BUILD" >> "$GITHUB_OUTPUT"
 
-      - name: Assemble app bundle
-        env:
-          VERSION: ${{ steps.version.outputs.version }}
-          BUILD: ${{ steps.version.outputs.build }}
-          CREATE_DMG: "1"
-        run: ./make_app.sh
+      - name: Download arm64 DMG
+        uses: actions/download-artifact@v5
+        with:
+          name: video-compare-gui-arm64-dmg
+          path: build/
+
+      - name: Download x86_64 DMG
+        uses: actions/download-artifact@v5
+        with:
+          name: video-compare-gui-x86_64-dmg
+          path: build/
 
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.version }}
           name: ${{ steps.version.outputs.version }}
-          files: build/Video-Compare-GUI.dmg
+          files: |
+            build/Video-Compare-GUI-arm64.dmg
+            build/Video-Compare-GUI-x86_64.dmg
           generate_release_notes: true
