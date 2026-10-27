@@ -49,7 +49,7 @@ jobs:
         run: ./.build/debug/VideoCompareGUI --selftest
 
       - name: Build release binary (arm64)
-        run: swift build -c release --arch arm64
+        run: swift build -c release --arch arm64 -Xlinker -macos_version_min -Xlinker 13.0.0
 
       - name: Upload arm64 binary
         uses: actions/upload-artifact@v5
@@ -89,7 +89,7 @@ jobs:
           VSWIFT
 
       - name: Build release binary (x86_64)
-        run: swift build -c release --arch x86_64
+        run: swift build -c release --arch x86_64 -Xlinker -macos_version_min -Xlinker 13.0.0
 
       - name: Upload x86_64 binary
         uses: actions/upload-artifact@v5

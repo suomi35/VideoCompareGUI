@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 
 echo "==> Building release binary (universal)..."
 if [ ! -f .build/release/VideoCompareGUI ]; then
-    swift build -c release --arch arm64 --arch x86_64
+    swift build -c release --arch arm64 --arch x86_64 -Xlinker -macos_version_min -Xlinker 13.0.0
 else
     echo "    Binary already present at .build/release/VideoCompareGUI (pre-built by CI matrix), skipping build."
 fi
