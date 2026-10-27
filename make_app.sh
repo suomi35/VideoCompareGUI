@@ -31,19 +31,15 @@ fi
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 
 echo "==> Copying localized resources (.lproj) into app bundle..."
-# SwiftPM compiles .lproj directories into the module resource bundle.
-# Copy them into the app's Contents/Resources so Bundle.main finds them at runtime.
-RESOURCE_BUNDLE=".build/release/VideoCompareGUI_VideoCompareGUI.bundle"
-if [ -d "$RESOURCE_BUNDLE" ]; then
-    for lproj in "$RESOURCE_BUNDLE"/*.lproj; do
-        if [ -d "$lproj" ]; then
-            cp -R "$lproj" "$APP/Contents/Resources/"
-            echo "    Bundled $(basename "$lproj")"
-        fi
-    done
-else
-    echo "    WARNING: resource bundle not found at $RESOURCE_BUNDLE - app will have no localized strings"
-fi
+# Copy .lproj directories from the source tree so Bundle.main finds them at runtime.
+# (SwiftPM compiles them into a module bundle during `swift build`, but CI only
+# downloads the binary artifact, so we copy from source to be safe.)
+for lproj in Sources/VideoCompareGUI/Resources/*.lproj; do
+    if [ -d "$lproj" ]; then
+        cp -R "$lproj" "$APP/Contents/Resources/"
+        echo "    Bundled $(basename "$lproj")"
+    fi
+done
 
 echo "==> Building AppIcon.icns from AppIcon.appiconset..."
 TMPBASE=$(mktemp -d)
