@@ -1,6 +1,5 @@
 import AppKit
 import SwiftUI
-import VideoCompareGUIKit
 
 public final class AppDelegate: NSObject, NSApplicationDelegate {
     public weak var model: AppModel?

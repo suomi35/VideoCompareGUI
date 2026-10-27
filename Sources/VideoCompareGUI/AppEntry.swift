@@ -1,5 +1,4 @@
 import SwiftUI
-import VideoCompareGUIKit
 
 @main
 struct VideoCompareGUIEntry: App {

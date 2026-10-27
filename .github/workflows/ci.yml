@@ -1,0 +1,151 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-arm64:
+    runs-on: macos-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Determine version
+        id: version
+        run: |
+          LATEST=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.3.4")
+          IFS='.' read -r MAJOR MINOR PATCH <<< "${LATEST#v}"
+          PATCH=$((PATCH + 1))
+          VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+          BUILD=${GITHUB_RUN_NUMBER}
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "build=$BUILD" >> "$GITHUB_OUTPUT"
+
+      - name: Generate Version.swift
+        run: |
+          cat > Sources/VideoCompareGUI/Version.swift <<VSWIFT
+          public enum AppVersion {
+              public static let marketing = "${{ steps.version.outputs.version }}"
+              public static let build = "${{ steps.version.outputs.build }}"
+          }
+          VSWIFT
+
+      - name: Build (debug)
+        run: swift build
+
+      - name: Run unit tests
+        run: swift test
+
+      - name: Run self-test
+        run: ./.build/debug/VideoCompareGUI --selftest
+
+      - name: Build release binary (arm64) and assemble app bundle
+        env:
+          ARCH: arm64
+          VERSION: ${{ steps.version.outputs.version }}
+          BUILD: ${{ steps.version.outputs.build }}
+          CREATE_DMG: "1"
+        run: ./make_app.sh
+
+      - name: Upload arm64 DMG
+        uses: actions/upload-artifact@v5
+        with:
+          name: video-compare-gui-arm64-dmg
+          path: build/Video-Compare-GUI-arm64.dmg
+          if-no-files-found: error
+
+  build-x86_64:
+    runs-on: macos-14
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Determine version
+        id: version
+        run: |
+          LATEST=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.3.4")
+          IFS='.' read -r MAJOR MINOR PATCH <<< "${LATEST#v}"
+          PATCH=$((PATCH + 1))
+          VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+          BUILD=${GITHUB_RUN_NUMBER}
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "build=$BUILD" >> "$GITHUB_OUTPUT"
+
+      - name: Generate Version.swift
+        run: |
+          cat > Sources/VideoCompareGUI/Version.swift <<VSWIFT
+          public enum AppVersion {
+              public static let marketing = "${{ steps.version.outputs.version }}"
+              public static let build = "${{ steps.version.outputs.build }}"
+          }
+          VSWIFT
+
+      - name: Build release binary (x86_64) and assemble app bundle
+        env:
+          ARCH: x86_64
+          VERSION: ${{ steps.version.outputs.version }}
+          BUILD: ${{ steps.version.outputs.build }}
+          CREATE_DMG: "1"
+        run: ./make_app.sh
+
+      - name: Upload x86_64 DMG
+        uses: actions/upload-artifact@v5
+        with:
+          name: video-compare-gui-x86_64-dmg
+          path: build/Video-Compare-GUI-x86_64.dmg
+          if-no-files-found: error
+
+  create-release:
+    needs: [build-arm64, build-x86_64]
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Determine version
+        id: version
+        run: |
+          LATEST=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.3.4")
+          IFS='.' read -r MAJOR MINOR PATCH <<< "${LATEST#v}"
+          PATCH=$((PATCH + 1))
+          VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+          BUILD=${GITHUB_RUN_NUMBER}
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "build=$BUILD" >> "$GITHUB_OUTPUT"
+
+      - name: Download arm64 DMG
+        uses: actions/download-artifact@v5
+        with:
+          name: video-compare-gui-arm64-dmg
+          path: build/
+
+      - name: Download x86_64 DMG
+        uses: actions/download-artifact@v5
+        with:
+          name: video-compare-gui-x86_64-dmg
+          path: build/
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: ${{ steps.version.outputs.version }}
+          files: |
+            build/Video-Compare-GUI-arm64.dmg
+            build/Video-Compare-GUI-x86_64.dmg
+          generate_release_notes: true

@@ -4,30 +4,36 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-echo "==> Building release binary..."
-swift build -c release
+echo "==> Building release binary (${ARCH:-native})..."
+if [ -n "${ARCH:-}" ]; then
+    if [ "$ARCH" = "x86_64" ]; then
+        swift build -c release --arch "$ARCH" -Xlinker -macos_version_min -Xlinker 13.0.0
+    else
+        swift build -c release --arch "$ARCH"
+    fi
+else
+    swift build -c release
+fi
 
 APP="build/Video Compare GUI.app"
 echo "==> Assembling ${APP}..."
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp .build/release/VideoCompareGUI "$APP/Contents/MacOS/VideoCompareGUI"
+chmod +x "$APP/Contents/MacOS/VideoCompareGUI"
+
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 
 echo "==> Copying localized resources (.lproj) into app bundle..."
-# SwiftPM compiles .lproj directories into the module resource bundle.
-# Copy them into the app's Contents/Resources so Bundle.main finds them at runtime.
-RESOURCE_BUNDLE=".build/release/VideoCompareGUI_VideoCompareGUIKit.bundle"
-if [ -d "$RESOURCE_BUNDLE" ]; then
-    for lproj in "$RESOURCE_BUNDLE"/*.lproj; do
-        if [ -d "$lproj" ]; then
-            cp -R "$lproj" "$APP/Contents/Resources/"
-            echo "    Bundled $(basename "$lproj")"
-        fi
-    done
-else
-    echo "    WARNING: resource bundle not found at $RESOURCE_BUNDLE - app will have no localized strings"
-fi
+# Copy .lproj directories from the source tree so Bundle.main finds them at runtime.
+# (SwiftPM compiles them into a module bundle during `swift build`, but CI only
+# downloads the binary artifact, so we copy from source to be safe.)
+for lproj in Sources/VideoCompareGUI/Resources/*.lproj; do
+    if [ -d "$lproj" ]; then
+        cp -R "$lproj" "$APP/Contents/Resources/"
+        echo "    Bundled $(basename "$lproj")"
+    fi
+done
 
 echo "==> Building AppIcon.icns from AppIcon.appiconset..."
 TMPBASE=$(mktemp -d)
@@ -47,7 +53,7 @@ cp "$SRC/icon_512x512.png"    "$TMPIconset/icon_512x512.png"
 cp "$SRC/icon_512x512@2x.png" "$TMPIconset/icon_512x512@2x.png"
 if iconutil -c icns "$TMPIconset" -o "$APP/Contents/Resources/AppIcon.icns"; then
     echo "==> Bundled AppIcon.icns"
-    /usr/libexec/PlistBuddy -c "Set :CFBundleIconFile AppIcon" "$APP/Contents/Info.plist" \
+    /usr/libexec/PlistBuddy -c "Set :CFBundleIconFile AppIcon" "$APP/Contents/Info.plist" 2>/dev/null \
       || /usr/libexec/PlistBuddy -c "Add :CFBundleIconFile string AppIcon" "$APP/Contents/Info.plist"
 else
     echo "==> WARNING: iconutil failed - app will have no icon"
@@ -55,6 +61,16 @@ fi
 rm -rf "$TMPBASE"
 
 printf 'APPL????' > "$APP/Contents/PkgInfo"
+
+# Inject version into Info.plist (CI sets VERSION/BUILD env vars)
+if [ -n "${VERSION:-}" ]; then
+    /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION" "$APP/Contents/Info.plist" 2>/dev/null \
+      || /usr/libexec/PlistBuddy -c "Add :CFBundleShortVersionString string $VERSION" "$APP/Contents/Info.plist"
+fi
+if [ -n "${BUILD:-}" ]; then
+    /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD" "$APP/Contents/Info.plist" 2>/dev/null \
+      || /usr/libexec/PlistBuddy -c "Add :CFBundleVersion string $BUILD" "$APP/Contents/Info.plist"
+fi
 
 echo "==> Ad-hoc signing..."
 codesign --force --sign - "$APP"
@@ -69,3 +85,18 @@ else
     echo "    Install with: ./make_app.sh --install"
     echo "    Or run in place: open '$APP'"
 fi
+
+# Optional: create a DMG if CREATE_DMG=1
+case "${CREATE_DMG:-}" in
+  1|true|yes)
+    DMG="build/Video-Compare-GUI-${ARCH:-universal}.dmg"
+    STAGE=$(mktemp -d)
+    cp -R "$APP" "$STAGE/"
+    ln -s /Applications "$STAGE/Applications"
+    mkdir -p build
+    rm -f "$DMG"
+    hdiutil create -volname "Video Compare GUI" -srcfolder "$STAGE" -ov -format UDZO "$DMG"
+    rm -rf "$STAGE"
+    echo "==> Created $DMG"
+    ;;
+esac
