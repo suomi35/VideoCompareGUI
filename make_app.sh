@@ -6,7 +6,11 @@ cd "$(dirname "$0")"
 
 echo "==> Building release binary (${ARCH:-native})..."
 if [ -n "${ARCH:-}" ]; then
-    swift build -c release --arch "$ARCH" -Xlinker -macos_version_min -Xlinker 13.0.0
+    if [ "$ARCH" = "x86_64" ]; then
+        swift build -c release --arch "$ARCH" -Xlinker -macos_version_min -Xlinker 13.0.0
+    else
+        swift build -c release --arch "$ARCH"
+    fi
 else
     swift build -c release
 fi
