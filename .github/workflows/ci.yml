@@ -119,6 +119,11 @@ jobs:
           name: video-compare-gui-x86_64
           path: /tmp/x86_64/
 
+      - name: Restore execute permissions on downloaded binaries
+        run: |
+          chmod +x .build/release/VideoCompareGUI
+          chmod +x /tmp/x86_64/VideoCompareGUI
+
       - name: Create universal binary with lipo
         run: |
           mkdir -p .build/release
@@ -126,6 +131,7 @@ jobs:
           lipo -create -output .build/release/VideoCompareGUI \
             .build/release/VideoCompareGUI \
             /tmp/VideoCompareGUI-x86_64
+          chmod +x .build/release/VideoCompareGUI
           lipo -archs .build/release/VideoCompareGUI
 
       - name: Determine version

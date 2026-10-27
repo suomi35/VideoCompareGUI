@@ -16,6 +16,7 @@ echo "==> Assembling ${APP}..."
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp .build/release/VideoCompareGUI "$APP/Contents/MacOS/VideoCompareGUI"
+chmod +x "$APP/Contents/MacOS/VideoCompareGUI"
 
 # Ensure universal binary (Apple Silicon + Intel). If SwiftPM did not emit a
 # multi-arch binary, add the missing Intel slice with lipo.
