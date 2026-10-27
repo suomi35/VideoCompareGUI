@@ -24,7 +24,7 @@ open "build/Video Compare.app"    # or: ./make_app.sh --install  → /Applicatio
 
 ## Download
 
-Precompiled binaries are available on the [Releases](https://github.com/suomi35/VideoCompareGUI/releases) page — download the latest `.dmg`, open it, and drag the app to `Applications`. No compilation required.
+Precompiled binaries are available on the [Releases](https://github.com/suomi35/VideoCompareGUI/releases) page — download the latest `.dmg`, open it, and drag the app to `Applications`. The DMG contains a universal binary that runs on both Apple Silicon and Intel Macs. No compilation required.
 
 ## First Launch (Gatekeeper)
 

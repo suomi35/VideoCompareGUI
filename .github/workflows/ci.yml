@@ -9,8 +9,10 @@ permissions:
   contents: write
 
 jobs:
-  build-and-release:
+  build-arm64:
     runs-on: macos-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -27,7 +29,6 @@ jobs:
           BUILD=${GITHUB_RUN_NUMBER}
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "build=$BUILD" >> "$GITHUB_OUTPUT"
-          echo "Next version: $VERSION (build $BUILD)"
 
       - name: Generate Version.swift
         run: |
@@ -47,8 +48,96 @@ jobs:
       - name: Run self-test
         run: ./.build/debug/VideoCompareGUI --selftest
 
-      - name: Build release binary
-        run: swift build -c release
+      - name: Build release binary (arm64)
+        run: swift build -c release --arch arm64
+
+      - name: Upload arm64 binary
+        uses: actions/upload-artifact@v5
+        with:
+          name: video-compare-gui-arm64
+          path: .build/release/VideoCompareGUI
+          if-no-files-found: error
+
+  build-x86_64:
+    runs-on: macos-14
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Determine version
+        id: version
+        run: |
+          LATEST=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.3.4")
+          IFS='.' read -r MAJOR MINOR PATCH <<< "${LATEST#v}"
+          PATCH=$((PATCH + 1))
+          VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+          BUILD=${GITHUB_RUN_NUMBER}
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "build=$BUILD" >> "$GITHUB_OUTPUT"
+
+      - name: Generate Version.swift
+        run: |
+          cat > Sources/VideoCompareGUI/Version.swift <<VSWIFT
+          public enum AppVersion {
+              public static let marketing = "${{ steps.version.outputs.version }}"
+              public static let build = "${{ steps.version.outputs.build }}"
+          }
+          VSWIFT
+
+      - name: Build release binary (x86_64)
+        run: swift build -c release --arch x86_64
+
+      - name: Upload x86_64 binary
+        uses: actions/upload-artifact@v5
+        with:
+          name: video-compare-gui-x86_64
+          path: .build/release/VideoCompareGUI
+          if-no-files-found: error
+
+  create-release:
+    needs: [build-arm64, build-x86_64]
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Download arm64 binary
+        uses: actions/download-artifact@v5
+        with:
+          name: video-compare-gui-arm64
+          path: .build/release/
+
+      - name: Download x86_64 binary
+        uses: actions/download-artifact@v5
+        with:
+          name: video-compare-gui-x86_64
+          path: /tmp/x86_64/
+
+      - name: Create universal binary with lipo
+        run: |
+          mkdir -p .build/release
+          mv /tmp/x86_64/VideoCompareGUI /tmp/VideoCompareGUI-x86_64
+          lipo -create -output .build/release/VideoCompareGUI \
+            .build/release/VideoCompareGUI \
+            /tmp/VideoCompareGUI-x86_64
+          lipo -archs .build/release/VideoCompareGUI
+
+      - name: Determine version
+        id: version
+        run: |
+          LATEST=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.3.4")
+          IFS='.' read -r MAJOR MINOR PATCH <<< "${LATEST#v}"
+          PATCH=$((PATCH + 1))
+          VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+          BUILD=${GITHUB_RUN_NUMBER}
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "build=$BUILD" >> "$GITHUB_OUTPUT"
 
       - name: Assemble app bundle
         env:
