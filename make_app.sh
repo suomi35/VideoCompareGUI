@@ -4,15 +4,11 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-echo "==> Building release binary (${ARCH:-universal})..."
-if [ ! -f .build/release/VideoCompareGUI ]; then
-    if [ -n "${ARCH:-}" ]; then
-        swift build -c release --arch "$ARCH" -Xlinker -macos_version_min -Xlinker 13.0.0
-    else
-        swift build -c release --arch arm64 --arch x86_64 -Xlinker -macos_version_min -Xlinker 13.0.0
-    fi
+echo "==> Building release binary (${ARCH:-native})..."
+if [ -n "${ARCH:-}" ]; then
+    swift build -c release --arch "$ARCH"
 else
-    echo "    Binary already present at .build/release/VideoCompareGUI (pre-built by CI matrix), skipping build."
+    swift build -c release
 fi
 
 APP="build/Video Compare GUI.app"
@@ -22,16 +18,6 @@ mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp .build/release/VideoCompareGUI "$APP/Contents/MacOS/VideoCompareGUI"
 chmod +x "$APP/Contents/MacOS/VideoCompareGUI"
 
-# Ensure universal binary (Apple Silicon + Intel). If SwiftPM did not emit a
-# multi-arch binary, add the missing Intel slice with lipo.
-ARCHS=$(lipo -archs "$APP/Contents/MacOS/VideoCompareGUI" 2>/dev/null || true)
-if [[ ! "$ARCHS" =~ x86_64 ]]; then
-    echo "==> Adding Intel slice via lipo..."
-    swift build -c release --arch x86_64 --build-path .build/x86_64
-    lipo -create -output "$APP/Contents/MacOS/VideoCompareGUI" \
-        "$APP/Contents/MacOS/VideoCompareGUI" \
-        .build/x86_64/release/VideoCompareGUI
-fi
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 
 echo "==> Copying localized resources (.lproj) into app bundle..."
